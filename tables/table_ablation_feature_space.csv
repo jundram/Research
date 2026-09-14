@@ -1,0 +1,5 @@
+feature_space,design,n_flagged,injected_recall,injected_precision,pr_auc_vs_injected,pct_flagged_in_top_income_decile,spearman_score_vs_income
+amounts + ratios (primary),segmented,6442,0.1174,0.0587,0.0438,46.8799,0.2503
+amounts + ratios (primary),population-wide,6438,0.1407,0.0704,0.0508,46.0702,0.14
+ratios only,segmented,6442,0.3961,0.1979,0.2163,15.5542,0.1188
+ratios only,population-wide,6438,0.4169,0.2084,0.2248,14.5853,-0.0075

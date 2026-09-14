@@ -1,0 +1,6 @@
+type,description,eligible_pool,n_injected
+A1_wre_inflation,Work-related expenses inflated to 25-45% of salary,218028,644
+A2_business_expense,Business expenses inflated to 150-300% of business income,23526,644
+A3_rental_deduction,Rental deductions inflated to 300-500% of gross rent,34191,644
+A4_taxable_identity,Taxable income reported at 40-70% of income less deductions and losses,235253,644
+A5_invest_ded_no_income,Investment deductions of 15-35% of income with zero investment income,69700,643

@@ -1,0 +1,5 @@
+model,threshold,accuracy,precision,recall,f1,roc_auc,pr_auc,TN,FP,FN,TP,train_seconds
+Random Forest,0.50,0.9983,0.893,0.942,0.9169,0.9997,0.9751,95492,109,56,910,92.9
+Random Forest,top 2% budget,0.99,0.4992,0.9979,0.6655,0.9997,0.9751,94634,967,2,964,92.9
+Hist. Gradient Boosting,0.50,0.9961,0.7268,0.9803,0.8347,0.9965,0.9678,95245,356,19,947,5.8
+Hist. Gradient Boosting,top 2% budget,0.9898,0.4961,0.9917,0.6614,0.9965,0.9678,94628,973,8,958,5.8

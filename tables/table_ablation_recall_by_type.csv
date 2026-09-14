@@ -1,0 +1,6 @@
+type,amounts + ratios (primary) | segmented,amounts + ratios (primary) | population-wide,ratios only | segmented,ratios only | population-wide
+A1_wre_inflation,0.0963,0.0621,0.2143,0.1149
+A2_business_expense,0.1522,0.2143,0.3758,0.486
+A3_rental_deduction,0.2314,0.3152,0.3898,0.4705
+A4_taxable_identity,0.014,0.0202,0.0264,0.0233
+A5_invest_ded_no_income,0.0933,0.0918,0.9751,0.9907

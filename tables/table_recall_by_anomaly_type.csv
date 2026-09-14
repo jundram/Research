@@ -1,0 +1,6 @@
+type,n,recall_segmented,recall_population_wide
+A1_wre_inflation,644,0.0963,0.0621
+A2_business_expense,644,0.1522,0.2143
+A3_rental_deduction,644,0.2314,0.3152
+A4_taxable_identity,644,0.014,0.0202
+A5_invest_ded_no_income,643,0.0933,0.0918

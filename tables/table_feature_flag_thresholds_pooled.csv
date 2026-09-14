@@ -1,0 +1,11 @@
+feature,value_for_flag_rate_ge_10pct,value_for_flag_rate_ge_25pct,value_for_flag_rate_ge_50pct,flag_rate_in_top1pct_of_feature,feature_p99
+Gross_rent_amt,6833.597,,,18.2,58116.75
+Other_foreign_inc_amt,1.0,380.0,,26.9,1710.0
+Tot_CY_CG_amt,2.0,,,16.2,69780.77
+Spr_Prsnl_Contr,548.0,,,17.4,59355.78
+Gift_amt,651.0,,,16.3,2634.11
+Net_CG_amt,3.0,,,16.9,28761.33
+Asbl_forgn_source_incm_amt,2.0,,,14.6,5926.11
+Unfranked_Div_amt,2.0,,,19.3,1117.11
+Rent_int_ded_amt,164.655,59227.602,,19.8,31072.33
+Spr_Emplr_Contr,19260.215,,,16.1,30573.33

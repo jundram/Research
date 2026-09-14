@@ -1,0 +1,9 @@
+segment_name,n,flagged_segmented,flagged_population_wide,injected,rate_segmented_pct,rate_population_wide_pct,injected_rate_pct
+S0: Wage-dominant (mid income),233317,4667,2632,2246,2.0,1.13,0.96
+S1: Pension/retirement (low income),17834,357,124,47,2.0,0.7,0.26
+S2: Business-dominant (mid income),18650,373,684,546,2.0,3.67,2.93
+S3: Investment-income (low income),18758,376,1546,79,2.0,8.24,0.42
+S4: Other-income (mid income),5402,109,257,27,2.02,4.76,0.5
+S5: Rental-property (low income),9266,186,572,180,2.01,6.17,1.94
+S6: Trust/partnership (mid income),14440,289,621,94,2.0,4.3,0.65
+S7: No/minimal reported income,4223,85,2,0,2.01,0.05,0.0

@@ -1,0 +1,10 @@
+,S0: Wage-dominant (mid income),S1: Pension/retirement (low income),S2: Business-dominant (mid income),S3: Investment-income (low income),S4: Other-income (mid income),S5: Rental-property (low income),S6: Trust/partnership (mid income),S7: No/minimal reported income,overall
+share_wage,0.2536,0.0428,0.0405,0.0518,0.0213,0.0319,0.0455,0.0202,0.0635
+share_business,0.0395,0.0087,0.0836,0.0095,0.005,0.0072,0.0092,0.0047,0.0209
+share_investment,0.0329,0.0088,0.0071,0.0755,0.006,0.0084,0.0107,0.005,0.0193
+share_pension,0.0332,0.0758,0.0065,0.0094,0.0053,0.0071,0.0091,0.0053,0.019
+share_trust,0.0262,0.0065,0.0055,0.0074,0.0052,0.0076,0.0623,0.0039,0.0156
+share_property,0.0214,0.005,0.0044,0.0062,0.0039,0.0499,0.0055,0.0035,0.0125
+share_other,0.0139,0.0036,0.003,0.0036,0.0331,0.0032,0.0037,0.0021,0.0083
+log_gross_activity,0.0073,0.0023,0.0016,0.0066,0.0017,0.0021,0.0028,0.0209,0.0057
+log_super_balance,0.0077,0.0044,0.0014,0.0011,0.0003,0.0006,0.0005,0.0011,0.0021

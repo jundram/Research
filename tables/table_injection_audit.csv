@@ -1,0 +1,6 @@
+type,ded_to_income_before,ded_to_income_after,taxable_before,taxable_after
+A1_wre_inflation,0.022,0.335,74279.5,49909.5
+A2_business_expense,0.005,0.026,47180.5,0.0
+A3_rental_deduction,0.018,0.11,70280.5,6219.5
+A4_taxable_identity,0.02,0.02,72182.5,38723.0
+A5_invest_ded_no_income,0.021,0.308,64319.0,45284.0

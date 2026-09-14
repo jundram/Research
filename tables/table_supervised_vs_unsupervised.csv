@@ -1,0 +1,5 @@
+method,n_flagged,precision,recall,f1,roc_auc,pr_auc
+"Isolation Forest, segmented (2%)",1923,0.0536,0.1066,0.0713,0.8146,0.0406
+"Isolation Forest, population-wide (2%)",1926,0.0639,0.1273,0.0851,0.8176,0.048
+Random Forest (top 2% budget),1931,0.4992,0.9979,0.6655,0.9997,0.9751
+Hist. Gradient Boosting (top 2% budget),1931,0.4961,0.9917,0.6614,0.9965,0.9678

@@ -1,0 +1,249 @@
+\subsection*{Appendix B - Model Feature Set}
+
+Table~\ref{tab:app_screening} lists every dollar-amount variable in the ATO sample file with the share of taxpayers reporting a non-zero value and the screening decision described in Section 3.3. Table~\ref{tab:app_ratios} gives summary statistics for the twelve behavioural features that were combined with the 44 retained amounts.
+
+\begin{table}[H]
+    \centering
+    \caption{Variable screening: share of taxpayers with a non-zero value (\%) and screening decision for all 57 amount variables.}
+    \label{tab:app_screening}
+    \footnotesize
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{lrl lrl}
+        \toprule
+        Variable & Non-zero (\%) & Decision & Variable & Non-zero (\%) & Decision \\
+        \midrule
+        Sw\_amt & 79.65 & kept & WRE\_car\_amt & 23.47 & kept \\
+        Alow\_ben\_amt & 26.76 & kept & WRE\_trvl\_amt & 9.77 & kept \\
+        ETP\_txbl\_amt & 1.89 & kept & WRE\_uniform\_amt & 43.11 & kept \\
+        Grs\_int\_amt & 63.40 & kept & WRE\_self\_amt & 5.69 & kept \\
+        Aust\_govt\_pnsn\_allw\_amt & 10.34 & kept & WRE\_other\_amt & 54.89 & kept \\
+        Unfranked\_Div\_amt & 8.11 & kept & Div\_Ded\_amt & 2.38 & kept \\
+        Frk\_Div\_amt & 18.80 & kept & Intrst\_Ded\_amt & 1.08 & kept \\
+        Dividends\_franking\_cr\_amt & 18.64 & dropped: redundant & Gift\_amt & 27.69 & kept \\
+        Net\_rent\_amt & 14.10 & kept & Non\_emp\_spr\_amt & 4.18 & kept \\
+        Gross\_rent\_amt & 14.03 & kept & Cost\_tax\_affairs\_amt & 39.03 & kept \\
+        Other\_rent\_ded\_amt & 14.02 & dropped: redundant & Other\_Ded\_amt & 5.80 & kept \\
+        Rent\_int\_ded\_amt & 10.70 & kept & Tot\_ded\_amt & 76.10 & kept \\
+        Rent\_cap\_wks\_amt & 7.47 & kept & PP\_loss\_claimed & 0.13 & dropped: sparse \\
+        Net\_farm\_management\_amt & 0.12 & dropped: sparse & NPP\_loss\_claimed & 0.42 & dropped: sparse \\
+        Net\_PP\_BI\_amt & 0.49 & dropped: sparse & Rep\_frng\_ben\_amt & 6.63 & kept \\
+        Net\_NPP\_BI\_amt & 10.17 & kept & Asbl\_forgn\_source\_incm\_amt & 7.49 & kept \\
+        Total\_PP\_BI\_amt & 0.43 & dropped: sparse & Net\_fincl\_invstmt\_lss\_amt & 0.66 & dropped: sparse \\
+        Total\_NPP\_BI\_amt & 9.92 & kept & Rptbl\_Empr\_spr\_cont\_amt & 9.47 & kept \\
+        Total\_PP\_BE\_amt & 0.44 & dropped: sparse & Cr\_PAYG\_ITI\_amt & 9.07 & kept \\
+        Total\_NPP\_BE\_amt & 9.25 & dropped: redundant & TFN\_amts\_wheld\_gr\_intst\_amt & 9.37 & kept \\
+        Net\_CG\_amt & 6.96 & kept & TFN\_amts\_wheld\_divs\_amt & 0.58 & dropped: sparse \\
+        Tot\_CY\_CG\_amt & 9.11 & kept & Hrs\_to\_prepare\_BPI\_cnt & 0.63 & dropped: sparse \\
+        Net\_PT\_PP\_dsn & 1.32 & kept & Taxable\_Income & 97.69 & kept \\
+        Net\_PT\_NPP\_dsn & 13.19 & kept & Help\_debt & 14.99 & kept \\
+        Taxed\_othr\_pnsn\_amt & 0.23 & dropped: sparse & Spr\_Emplr\_Contr & 76.55 & kept \\
+        Untaxed\_othr\_pnsn\_amt & 1.27 & kept & Spr\_Prsnl\_Contr & 10.72 & kept \\
+        Other\_foreign\_inc\_amt & 6.59 & kept & Spr\_Othr\_Contr & 3.63 & kept \\
+        Other\_inc\_amt & 8.85 & kept & Spr\_Ttl\_Acnt\_Bal & 90.65 & kept \\
+        Tot\_IncLoss\_amt & 98.97 & kept &  &  &  \\
+        \bottomrule
+    \end{tabular}}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Summary statistics of the twelve behavioural features ($n$ = 321,890).}
+    \label{tab:app_ratios}
+    \footnotesize
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{lrrrrrrr}
+        \toprule
+        Feature & Mean & SD & Min & Median & P90 & P99 & Max \\
+        \midrule
+        deduction\_to\_income\_ratio & 0.047 & 0.176 & 0.000 & 0.015 & 0.100 & 0.453 & 5.000 \\
+        wre\_to\_salary\_ratio & 0.031 & 0.145 & 0.000 & 0.008 & 0.071 & 0.294 & 5.000 \\
+        business\_expense\_ratio & 0.070 & 0.482 & $-$113.302 & 0.000 & 0.000 & 1.248 & 10.000 \\
+        rental\_deduction\_ratio & 0.165 & 0.551 & 0.000 & 0.000 & 0.688 & 2.193 & 10.000 \\
+        taxable\_income\_ratio & 0.999 & 0.021 & 0.400 & 1.000 & 1.000 & 1.000 & 1.000 \\
+        investment\_deduction\_ratio & 0.034 & 0.501 & 0.000 & 0.000 & 0.000 & 0.263 & 10.000 \\
+        gift\_to\_income\_ratio & 0.003 & 0.034 & 0.000 & 0.000 & 0.003 & 0.043 & 2.000 \\
+        tax\_affairs\_cost\_ratio & 0.005 & 0.044 & 0.000 & 0.000 & 0.006 & 0.085 & 1.000 \\
+        personal\_super\_ratio & 0.051 & 0.387 & 0.000 & 0.000 & 0.004 & 1.197 & 5.000 \\
+        payg\_instalment\_ratio & 0.015 & 0.107 & 0.000 & 0.000 & 0.000 & 0.289 & 2.000 \\
+        items\_reported & 10.971 & 4.141 & 0.000 & 11.000 & 16.000 & 23.000 & 36.000 \\
+        lodged\_via\_agent & 0.629 & 0.483 & 0.000 & 1.000 & 1.000 & 1.000 & 1.000 \\
+        \bottomrule
+    \end{tabular}}
+\end{table}
+
+\subsection*{Appendix C - Injected Anomaly Design and Audit}
+
+Table~\ref{tab:app_injection} records the eligible pool and the number of records modified for each of the five injected mechanisms of Section 3.3, and Table~\ref{tab:app_injection_audit} shows the median deduction-to-income ratio and median taxable income of the modified records before and after injection, confirming that each mechanism changed the intended quantity.
+
+\begin{table}[H]
+    \centering
+    \caption{Injected anomaly mechanisms: eligible pool and number of records injected.}
+    \label{tab:app_injection}
+    \footnotesize
+    \begin{tabular}{l p{0.44\linewidth} rr}
+        \toprule
+        Type & Description & Eligible pool & Injected \\
+        \midrule
+        A1\_wre\_inflation & Work-related expenses inflated to 25-45\% of salary & 218,028 & 644 \\
+        A2\_business\_expense & Business expenses inflated to 150-300\% of business income & 23,526 & 644 \\
+        A3\_rental\_deduction & Rental deductions inflated to 300-500\% of gross rent & 34,191 & 644 \\
+        A4\_taxable\_identity & Taxable income reported at 40-70\% of income less deductions and losses & 235,253 & 644 \\
+        A5\_invest\_ded\_no\_income & Investment deductions of 15-35\% of income with zero investment income & 69,700 & 643 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Injection audit: median deduction-to-income ratio and median taxable income (AUD) of injected records before and after modification.}
+    \label{tab:app_injection_audit}
+    \footnotesize
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{lrrrr}
+        \toprule
+        Type & Ded./income before & Ded./income after & Taxable income before & Taxable income after \\
+        \midrule
+        A1\_wre\_inflation & 0.022 & 0.335 & 74,279.5 & 49,909.5 \\
+        A2\_business\_expense & 0.005 & 0.026 & 47,180.5 & 0.0 \\
+        A3\_rental\_deduction & 0.018 & 0.110 & 70,280.5 & 6,219.5 \\
+        A4\_taxable\_identity & 0.020 & 0.020 & 72,182.5 & 38,723.0 \\
+        A5\_invest\_ded\_no\_income & 0.021 & 0.308 & 64,319.0 & 45,284.0 \\
+        \bottomrule
+    \end{tabular}}
+\end{table}
+
+\subsection*{Appendix D - Supplementary Results}
+
+This appendix contains supporting results referred to in Chapter 4 but not reported there in full: the clustering algorithms compared with K-Means (Table~\ref{tab:app_clustering}), the occupation mix of each segment (Table~\ref{tab:app_occupation}), the five-fold cross-validation of the supervised models (Table~\ref{tab:app_cv}), the SHAP validity check for each segment forest (Table~\ref{tab:app_shap_validity}), the global SHAP importance of the supervised Random Forest shown in Fig.~\ref{fig:shap_rf} (Table~\ref{tab:app_shap_rf}), and the fifteen highest-scoring records of the segmented Isolation Forest with their top SHAP drivers (Table~\ref{tab:app_review}).
+
+\begin{table}[H]
+    \centering
+    \caption{Alternative clustering algorithms compared with K-Means on the segmentation features.}
+    \label{tab:app_clustering}
+    \footnotesize
+    \begin{tabular}{lrrr}
+        \toprule
+        Model & Silhouette & Davies--Bouldin & Smallest segment (\%) \\
+        \midrule
+        K-Means (k=8) & 0.653 & 0.719 & 1.31 \\
+        Gaussian Mixture (diag, k=8) & 0.149 & 2.585 & 4.20 \\
+        Gaussian Mixture (full, k=8) & 0.202 & 2.643 & 4.19 \\
+        Ward agglomerative (k=8, 8,000-row sample) & 0.642 & 0.711 & 0.94 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Occupation mix of each segment (\% of taxpayers in the segment).}
+    \label{tab:app_occupation}
+    \footnotesize
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{lrrrrrrrrrr}
+        \toprule
+        Segment & Clerical/admin & Community/personal service & Labourers & Machinery operators & Managers & Not stated & Other & Professionals & Sales & Technicians/trades \\
+        \midrule
+        S0: Wage-dominant (mid income) & 12.5 & 12.5 & 10.1 & 6.2 & 12.8 & 0.1 & 3.8 & 22.8 & 8.2 & 11.0 \\
+        S1: Pension/retirement (low income) & 4.5 & 7.5 & 8.5 & 2.4 & 1.8 & 62.1 & 2.1 & 3.6 & 5.0 & 2.4 \\
+        S2: Business-dominant (mid income) & 2.3 & 4.5 & 4.0 & 1.9 & 2.6 & 70.3 & 0.9 & 6.8 & 1.8 & 4.8 \\
+        S3: Investment-income (low income) & 3.2 & 1.4 & 0.7 & 0.6 & 4.6 & 82.7 & 0.7 & 4.2 & 0.9 & 1.0 \\
+        S4: Other-income (mid income) & 4.4 & 5.4 & 3.8 & 2.5 & 5.4 & 59.0 & 3.1 & 10.6 & 2.5 & 3.4 \\
+        S5: Rental-property (low income) & 5.3 & 2.9 & 1.7 & 0.9 & 5.8 & 71.0 & 1.0 & 7.2 & 2.0 & 2.2 \\
+        S6: Trust/partnership (mid income) & 7.2 & 3.0 & 1.7 & 0.7 & 7.0 & 67.3 & 1.2 & 6.6 & 3.4 & 2.0 \\
+        S7: No/minimal reported income & 0.4 & 0.5 & 0.6 & 0.3 & 0.4 & 96.3 & 0.4 & 0.4 & 0.3 & 0.4 \\
+        \bottomrule
+    \end{tabular}}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Five-fold stratified cross-validation of the supervised classifiers (mean $\pm$ SD).}
+    \label{tab:app_cv}
+    \footnotesize
+    \begin{tabular}{lrrrr}
+        \toprule
+        Model & F1 & ROC-AUC & PR-AUC & Training time (s) \\
+        \midrule
+        Random Forest & 0.920 $\pm$ 0.009 & 0.9997 $\pm$ 0.0000 & 0.970 $\pm$ 0.005 & 534.7 \\
+        Hist. Gradient Boosting & 0.856 $\pm$ 0.028 & 0.9980 $\pm$ 0.0010 & 0.974 $\pm$ 0.004 & 38.5 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{SHAP validity check: Spearman correlation between the sum of SHAP values and the Isolation Forest score in each segment.}
+    \label{tab:app_shap_validity}
+    \footnotesize
+    \begin{tabular}{lrr}
+        \toprule
+        Segment & Records explained & Spearman (SHAP sum vs.\ score) \\
+        \midrule
+        S0: Wage-dominant (mid income) & 600 & 1.000 \\
+        S1: Pension/retirement (low income) & 600 & 1.000 \\
+        S2: Business-dominant (mid income) & 600 & 1.000 \\
+        S3: Investment-income (low income) & 600 & 1.000 \\
+        S4: Other-income (mid income) & 409 & 1.000 \\
+        S5: Rental-property (low income) & 486 & 1.000 \\
+        S6: Trust/partnership (mid income) & 589 & 1.000 \\
+        S7: No/minimal reported income & 385 & 1.000 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Global SHAP importance of the supervised Random Forest (top 15 of 56 features).}
+    \label{tab:app_shap_rf}
+    \footnotesize
+    \begin{tabular}{rlr}
+        \toprule
+        Rank & Feature & Mean $|$SHAP$|$ \\
+        \midrule
+        1 & taxable\_income\_ratio & 0.0947 \\
+        2 & deduction\_to\_income\_ratio & 0.0477 \\
+        3 & rental\_deduction\_ratio & 0.0350 \\
+        4 & business\_expense\_ratio & 0.0282 \\
+        5 & log\_Net\_rent\_amt & 0.0260 \\
+        6 & log\_Tot\_IncLoss\_amt & 0.0249 \\
+        7 & log\_Taxable\_Income & 0.0242 \\
+        8 & log\_Tot\_ded\_amt & 0.0231 \\
+        9 & log\_Total\_NPP\_BI\_amt & 0.0206 \\
+        10 & log\_Net\_NPP\_BI\_amt & 0.0199 \\
+        11 & log\_Gross\_rent\_amt & 0.0173 \\
+        12 & log\_WRE\_other\_amt & 0.0172 \\
+        13 & log\_Intrst\_Ded\_amt & 0.0163 \\
+        14 & investment\_deduction\_ratio & 0.0159 \\
+        15 & wre\_to\_salary\_ratio & 0.0153 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Fifteen highest-scoring records of the segmented Isolation Forest with their three largest SHAP contributions (values in AUD unless a ratio).}
+    \label{tab:app_review}
+    \scriptsize
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{llrrrr p{0.42\linewidth}}
+        \toprule
+        Record & Seg. & Injected & Score & Total income & Deductions & Top SHAP drivers \\
+        \midrule
+        87459 & S0 & -- & 0.7364 & 245,409 & 45,445 & log\_Div\_Ded\_amt=3,550.00; log\_Spr\_Othr\_Contr=43,530.00; log\_Tot\_CY\_CG\_amt=12,529.00 \\
+        56577 & S6 & -- & 0.6753 & 1,490,569 & 15,289 & log\_Unfranked\_Div\_amt=2,991.00; log\_WRE\_uniform\_amt=487.00; log\_WRE\_car\_amt=3,580.00 \\
+        85576 & S2 & A2\_business\_expense & 0.7483 & $-$427,401 & 117,241 & log\_Div\_Ded\_amt=51,135.00; log\_Other\_foreign\_inc\_amt=12,200.00; gift\_to\_income\_ratio=1.09 \\
+        259367 & S1 & -- & 0.7139 & 142,185 & 59,604 & log\_Intrst\_Ded\_amt=15,271.00; log\_Tot\_CY\_CG\_amt=28,467.00; log\_Gross\_rent\_amt=36,687.00 \\
+        84977 & S3 & -- & 0.6684 & $-$2,210 & 26,806 & deduction\_to\_income\_ratio=5.00; log\_Untaxed\_othr\_pnsn\_amt=58,998.00; personal\_super\_ratio=5.00 \\
+        220906 & S7 & -- & 0.7140 & 19 & 9,302 & deduction\_to\_income\_ratio=5.00; wre\_to\_salary\_ratio=5.00; log\_TFN\_amts\_wheld\_gr\_intst\_amt=6.00 \\
+        2684 & S4 & -- & 0.6663 & 1,327,612 & 512,041 & log\_Intrst\_Ded\_amt=328,522.00; log\_Div\_Ded\_amt=22,516.00; business\_expense\_ratio=10.00 \\
+        103340 & S5 & -- & 0.6505 & $-$70,235 & 3,255 & log\_Other\_foreign\_inc\_amt=6,431.00; gift\_to\_income\_ratio=1.23; log\_Net\_CG\_amt=84,172.00 \\
+        266175 & S0 & A3\_rental\_deduction & 0.7168 & $-$410,927 & 132,117 & personal\_super\_ratio=3.28; log\_Div\_Ded\_amt=127,766.00; log\_Tot\_CY\_CG\_amt=37,774.00 \\
+        284942 & S0 & -- & 0.7158 & 559,550 & 61,874 & log\_Tot\_CY\_CG\_amt=20,252.00; log\_Div\_Ded\_amt=51,135.00; log\_Net\_CG\_amt=15,840.00 \\
+        84356 & S0 & -- & 0.7077 & 1,186,484 & 149,708 & log\_Tot\_CY\_CG\_amt=73,500.00; log\_Unfranked\_Div\_amt=18,787.00; log\_Asbl\_forgn\_source\_incm\_amt=6,008.00 \\
+        190823 & S0 & -- & 0.7070 & 144,621 & 94,550 & log\_Tot\_CY\_CG\_amt=56,774.00; log\_Div\_Ded\_amt=29,306.00; log\_Unfranked\_Div\_amt=10,498.00 \\
+        25520 & S0 & -- & 0.7063 & 199,428 & 25,500 & log\_Tot\_CY\_CG\_amt=28,890.00; log\_Asbl\_forgn\_source\_incm\_amt=226,914.00; log\_Spr\_Othr\_Contr=6,140.00 \\
+        2694 & S0 & -- & 0.7032 & 608,399 & 50,805 & log\_Div\_Ded\_amt=32,715.00; log\_Tot\_CY\_CG\_amt=15,116.00; log\_Spr\_Prsnl\_Contr=14,564.00 \\
+        302688 & S0 & A3\_rental\_deduction & 0.7003 & $-$87,400 & 9,507 & deduction\_to\_income\_ratio=5.00; personal\_super\_ratio=2.18; tax\_affairs\_cost\_ratio=0.32 \\
+        \bottomrule
+    \end{tabular}}
+\end{table}

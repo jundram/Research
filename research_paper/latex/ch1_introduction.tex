@@ -1,0 +1,63 @@
+\section{Introduction}
+
+\subsection{Background and Research Context}
+
+Australian taxation system is based on self-assessment which means they accept the majority of returns as submitted by individuals and depends on data verification which is collected afterward from different sources. The ATO audit results show that people claim high deductions, not reporting their income, provide false information to declare their tax return. The misclaimed deductions like work-related expenses and rental deductions account for shortfall among individuals not operating businesses. Most common issues include that claims have been submitted without any receipts, costs that is only for personal use, and etc. For example, the common things are that someone might claim the full cost of a mobile phone that is also used for personal reasons~\cite{oecd2016advanced}. Tax administrations are requested to improve their efficiency and accountability while reducing budgets and staff requirements.
+
+ATO estimates tax gap each year which is the difference between what the ATO expects to collect and the amount that would have been collected if every taxpayer was fully compliant with relevant taxation law. The individuals net tax gap is the second largest component in tax gap, at 21\% of the overall gap. ATO estimate the tax gap for individuals is \$12.5 billion in 2022--23, or 6.2\% of the total theoretical tax, down from 6.7\% in 2021--22~\cite{ato2025taxgap}.
+
+Tax administrations operate under a structural constraint. The taxpayer population is very large, the number of returns that can be examined in detail is small, and examining a compliant taxpayer imposes a cost on both the administration and the taxpayer. In Australia more than sixteen million individual income tax returns are lodged each year~\cite{oecd2016advanced}, and only a small fraction can receive individual attention. As such, deciding which tax return to review or audit is the most time consuming and analytical job with high cost.
+
+\subsection{Research Problem and Motivation}
+
+The detection of tax anomaly or risk can be effectively approached by methods based on supervised machine learning techniques. However, those methods require large training datasets containing data instances corresponding to both verified tax evasion cases and regular (compliant) tax behavior. As indicated in many previous studies reviewed in the related work section, such datasets are usually not available in many cases. As it contains many sensitive information such as personal details including TFN numbers, financial information and etc, these data are usually protected under strict regulations, making it inaccessible for individual researchers. The second problem with supervised machine learning is that a small number of frauds identified by tax audits that are recorded in the training dataset. Even though having those audit records does not mean those cases are representative of the whole population, as such the trained model will be biased, meaning it will have a high precision but low recall.
+
+Due to limited access to labeled data that required for supervised learning, the detection of tax anomaly or risk is usually approached by unsupervised machine learning methods based on anomaly detection algorithms. Compared with supervised approaches, unsupervised methods are less precise: they will not identify tax fraud cases, but will point to entities with irregular and suspicious tax behavior including also dishonest tax payers. Therefore, unsupervised methods are suitable as a decision support tool in tax anomaly or risk management systems enabling better prioritization of tax controls and improving efficiency of tax collection. Second, a tax risk management system based on accurate unsupervised learning may lead to a more efficient use of resources when operationally treating identified risks~\cite{sebtaoui2020risk}.
+
+While these models have shown promising results in analyzing tax-related behaviors, the majority of research tends to concentrate on the development of models, lacking systematic comparative research on multi-source tax-related data integration, industry variability handling, and model adaptability. In light of increasing complexity of tax-related behaviors, a key challenge is how to create high-performance and interpretable risk prediction models based on multi-dimensional variables. The study combines financial variables and non-financial features, but it does not have time-series data to build a comprehensive tax risk assessment of taxpayer due to data restrictions mentioned earlier. comprehensive analysis framework using SVM, XGBoost, and Random Forest models, to comprehensively improve the accuracy of tax-related behavior identification and the scientific nature of risk management.
+
+The research finds that a multi feature system significantly outperforms single features, showing outstanding performance in capturing tax-related behavior patterns and dynamic changes, with Isolation Forest performing the best, significantly outperforming other models. In addition, service industry enterprises exhibit more stable model classification performance due to the relatively more uniform distribution of features. This result indicates that the optimization of the multi-indicator feature system and the adaptation of model selection are of great significance for enhancing the scientific nature of intelligent analysis and risk management of tax-related behavior.
+
+The research problem is that population-wide anomaly detection on tax returns conflates taxpayer heterogeneity with irregular reporting, and that unsupervised scores are hard to evaluate and to explain.
+
+\subsection{Research Questions and Objectives}
+
+The objectives of this research paper is to design, implement and evaluate framework that
+
+\begin{itemize}
+    \item Segments taxpayers into groups which is explanaible and distinct
+    \item Detect anomaly score for each taxpayer using Isolation Forest
+    \item Test the anomaly mechanism using injected anomaly score by supervised model
+    \item Explain segment anomaly flags using SHAP
+\end{itemize}
+
+Four questions are addressed:
+
+\begin{itemize}
+    \item \textbf{RQ1.} Can unsupervised K-Means segment the taxpayer into peer groups that are statistically well separated and interpretable?
+    \item \textbf{RQ2.} Does anomaly scores within peer group change which taxpayer will be flagged compared to population wide anomaly score?
+    \item \textbf{RQ3.} How well can supervised machine learning can learn the anomaly score within the dataset?
+    \item \textbf{RQ4.} What made does anomaly score flag those taxpayers, can SHAP describe these?
+\end{itemize}
+
+\subsection{Significance and Expected Contribution}
+
+The key contributions of this paper are listed below.
+
+\begin{itemize}
+    \item Existing solutions of the k-means algorithm along with a tax return dataset are implemented and discussed in order to see whether it would segment the correct peer-group variants and the relationships with income stream.
+    \item This research frames the tax authority problems in identifying the risky taxpayer behaviour, analyses and presents a unsupervised machine learning study using the Isolation Forest algorithm.
+    \item Experiments are performed using the injected anomaly scores to find out their effectiveness.
+\end{itemize}
+
+\subsection{Thesis Outline}
+
+The remainder of this thesis is organised as follows.
+
+\begin{itemize}
+    \item \textbf{Chapter 2 -- Literature Review} reviews the existing approaches to tax fraud and anomaly detection, from traditional audit and rule-based systems to supervised and unsupervised machine learning, the anomaly detection algorithms used in this study, and explainable AI methods such as SHAP.
+    \item \textbf{Chapter 3 -- Research Methodology} describes the four-stage framework, the ATO 2022--23 Individual Sample File, the preprocessing and feature engineering steps, the injection of five anomaly mechanisms, and the K-Means segmentation, Isolation Forest, supervised learning and SHAP explainability stages.
+    \item \textbf{Chapter 4 -- Analysis, Experiments and Results} presents the results for each research question: the segmentation results (RQ1), the segment-based versus population-wide anomaly detection results (RQ2), the supervised learning results (RQ3) and the SHAP explanations (RQ4).
+    \item \textbf{Chapter 5 -- Discussion} discusses the limitations of the study, including the absence of genuine compliance labels, false positives, data confidentiality and the single-year scope.
+    \item \textbf{Chapter 6 -- Conclusion and Recommendations} summarises the findings, states the overall contribution of the research and outlines directions for future work.
+\end{itemize}

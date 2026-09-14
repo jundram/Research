@@ -1,0 +1,9 @@
+segment,name,n_explained,spearman_shapsum_vs_score
+0,S0: Wage-dominant (mid income),600,1.0
+1,S1: Pension/retirement (low income),600,1.0
+2,S2: Business-dominant (mid income),600,1.0
+3,S3: Investment-income (low income),600,1.0
+4,S4: Other-income (mid income),409,1.0
+5,S5: Rental-property (low income),486,1.0
+6,S6: Trust/partnership (mid income),589,1.0
+7,S7: No/minimal reported income,385,1.0

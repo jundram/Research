@@ -1,0 +1,19 @@
+\section{Discussion}
+
+% TODO: Research_Paper v1 has no separate Discussion chapter -- its interpretation of the findings sits
+% inside Chapter 4 (e.g. the RQ2 and RQ4 closing paragraphs). The template expects this chapter to
+% interpret the findings against the research questions and the literature in Chapter 2, and to discuss
+% their significance and implications. Only the paper's Limitations section is included here so far.
+
+\subsection{Limitations}
+
+\begin{itemize}
+    \item \textbf{No genuine compliance labels were trained.} The sample file has no audit outcomes, hence every detection metric is measured against injected anomalies, and the supervised model's near-perfect performance reflects the learnability of five documented mechanisms, not the detectability of real non-compliance. A statistical anomaly, a potential compliance-risk indicator and confirmed non-compliance are different things. In this study only statistical anomaly was measured.
+    \item \textbf{False positives.} Ninety-four percent of flags were unmodified profiles, with large lawful capital gains or foreign income for example. Unsupervised flags are a starting point for review, not findings, and evaluating them against injected labels understates their usefulness.
+    \item \textbf{Privacy, confidentiality and the sample.} The file is confidentialised and limited to a 2\% sample whose extreme upper tail is compressed relative to the population. Full administrative data would face stricter governance and identify rarer profiles.
+    \item \textbf{Single year (2022--23).} Unusual records in one year could be a normal transition such as retirement, a property sale or a business start-up. Multi year features are unavailable as taxpayer details are confidentialised.
+    \item \textbf{Segment dependent results.} Anomaly scores are related only to the segment the taxpayer belong, so taxpayers change in segment could change the results.
+    \item \textbf{Limitations of SHAP.} Shapley attributions depend on the feature set and on correlated features, can be unstable for near-tied contributions, explain the model rather than the data-generating process, and can be manipulated by adversarially constructed models~\cite{kumar2020problems,slack2020fooling}.
+\end{itemize}
+
+No flag produced here constitutes evidence of tax risk, fraud or evasion, and the framework is not described as detecting it either.

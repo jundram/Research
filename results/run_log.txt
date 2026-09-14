@@ -1,0 +1,299 @@
+
+==============================================================================
+SECTION 3 - LOAD DATA
+==============================================================================
+Data source : ATO 2022-23 individual sample file (2% sample of individual returns)
+Records     : 321,890  Columns: 65
+
+==============================================================================
+SECTION 4 - INJECT SYNTHETIC ANOMALIES
+==============================================================================
+  A1_wre_inflation           eligible=218,028  injected=  644  | Work-related expenses inflated to 25-45% of salary
+  A2_business_expense        eligible= 23,526  injected=  644  | Business expenses inflated to 150-300% of business income
+  A3_rental_deduction        eligible= 34,191  injected=  644  | Rental deductions inflated to 300-500% of gross rent
+  A4_taxable_identity        eligible=235,253  injected=  644  | Taxable income reported at 40-70% of income less deductions and losses
+  A5_invest_ded_no_income    eligible= 69,700  injected=  643  | Investment deductions of 15-35% of income with zero investment income
+  saved table: table_injection_design.csv
+Total injected: 3,219 (1.0%)
+  saved table: table_injection_audit.csv
+
+==============================================================================
+SECTION 5 - EXPLORE THE DATASET
+==============================================================================
+  saved table: table_descriptive_statistics.csv
+Blank cells : 0  Duplicate rows: 0
+Lodged via tax agent: 62.9%
+Taxable income median: $ 55,076  Total income median: $ 58,085
+  saved figure: fig02_variable_distributions.png
+
+==============================================================================
+SECTION 6 - PREPROCESS DATA
+==============================================================================
+Sparsity screen (<1% non-zero) removed 10: ['Net_farm_management_amt', 'Net_PP_BI_amt', 'Total_PP_BI_amt', 'Total_PP_BE_amt', 'Taxed_othr_pnsn_amt', 'PP_loss_claimed', 'NPP_loss_claimed', 'Net_fincl_invstmt_lss_amt', 'TFN_amts_wheld_divs_amt', 'Hrs_to_prepare_BPI_cnt']
+Redundancy screen (|r|>0.95) removed 3: [('Frk_Div_amt', 'Dividends_franking_cr_amt', np.float64(0.998)), ('Gross_rent_amt', 'Other_rent_ded_amt', np.float64(0.992)), ('Total_NPP_BI_amt', 'Total_NPP_BE_amt', np.float64(0.951))]
+  saved table: table_feature_screening.csv
+
+==============================================================================
+SECTION 7 - FEATURE ENGINEERING
+==============================================================================
+Segmentation features (9): ['share_wage', 'share_business', 'share_property', 'share_investment', 'share_pension', 'share_trust', 'share_other', 'log_gross_activity', 'log_super_balance']
+Anomaly-detection features (56): 44 signed-log amounts + 12 ratios/indicators
+  saved table: table_ratio_features.csv
+
+==============================================================================
+SECTION 8 - STAGE 1: TAXPAYER SEGMENTATION (K-MEANS)
+==============================================================================
+
+==============================================================================
+SECTION 9 - CHOOSING THE NUMBER OF CLUSTERS
+==============================================================================
+  k=3: silhouette=0.5502 DB=1.765 CH=4405 smallest=22,566
+  k=4: silhouette=0.5758 DB=1.429 CH=4792 smallest=14,862
+  k=5: silhouette=0.6054 DB=1.323 CH=5443 smallest=14,716
+  k=6: silhouette=0.6205 DB=1.132 CH=6300 smallest=5,469
+  k=7: silhouette=0.6433 DB=0.865 CH=7874 smallest=5,429
+  k=8: silhouette=0.6528 DB=0.719 CH=8405 smallest=4,223
+  k=9: silhouette=0.4173 DB=0.804 CH=8627 smallest=4,205
+  k=10: silhouette=0.4210 DB=0.844 CH=8479 smallest=3,228
+  saved table: table_cluster_selection.csv
+SELECTION RULE: highest silhouette among k whose smallest segment >= 2,000  ->  k = 8
+  saved table: table_clustering_alternatives.csv
+                                     model  silhouette  davies_bouldin  smallest_pct
+                             K-Means (k=8)      0.6528          0.7186        1.3119
+              Gaussian Mixture (diag, k=8)      0.1486          2.5848        4.1971
+              Gaussian Mixture (full, k=8)      0.2016          2.6426        4.1927
+Ward agglomerative (k=8, 8,000-row sample)      0.6422          0.7114        0.9375
+  saved figure: fig03_cluster_selection.png
+
+==============================================================================
+SECTION 10 - SEGMENT PROFILES AND VISUALISATION
+==============================================================================
+  S0: Wage-dominant (mid income)                          n=233,317  median income=$   67,797
+  S1: Pension/retirement (low income)                     n= 17,834  median income=$   23,327
+  S2: Business-dominant (mid income)                      n= 18,650  median income=$   36,148
+  S3: Investment-income (low income)                      n= 18,758  median income=$   16,659
+  S4: Other-income (mid income)                           n=  5,402  median income=$   40,794
+  S5: Rental-property (low income)                        n=  9,266  median income=$   17,606
+  S6: Trust/partnership (mid income)                      n= 14,440  median income=$   65,278
+  S7: No/minimal reported income                          n=  4,223  median income=$        0
+  saved table: table_segment_profiles.csv
+  saved table: table_segment_occupation_mix.csv
+  saved figure: fig04_segments.png
+
+==============================================================================
+SECTION 11 - STAGE 2: ISOLATION FOREST WITHIN EACH SEGMENT
+==============================================================================
+Fitted 8 segment forests in 15.8s
+
+==============================================================================
+SECTION 12 - ANOMALY SCORES, THRESHOLDS AND LABELS
+==============================================================================
+  saved table: table_segment_thresholds.csv
+                                        name       n  threshold_2pct  n_flagged_2pct
+segment                                                                             
+0             S0: Wage-dominant (mid income)  233317          0.5332            4667
+1        S1: Pension/retirement (low income)   17834          0.5294             357
+2         S2: Business-dominant (mid income)   18650          0.5425             373
+3         S3: Investment-income (low income)   18758          0.5449             376
+4              S4: Other-income (mid income)    5402          0.5286             109
+5           S5: Rental-property (low income)    9266          0.5263             186
+6         S6: Trust/partnership (mid income)   14440          0.5234             289
+7             S7: No/minimal reported income    4223          0.5394              85
+  saved figure: fig05_anomaly_scores.png
+
+==============================================================================
+SECTION 13 - SEGMENTED VERSUS POPULATION-WIDE ISOLATION FOREST
+==============================================================================
+Global forest fitted in 12.8s; flagged 6,438
+  saved table: table_contamination_sweep.csv
+ contamination          design  n_flagged  injected_recall  injected_precision  injected_f1  natural_flags
+          0.01       segmented       3224           0.0677              0.0676       0.0677           3006
+          0.01 population-wide       3219           0.0826              0.0826       0.0826           2953
+          0.02       segmented       6442           0.1174              0.0587       0.0783           6064
+          0.02 population-wide       6438           0.1407              0.0704       0.0938           5985
+          0.05       segmented      16098           0.2513              0.0503       0.0838          15289
+          0.05 population-wide      16095           0.2765              0.0553       0.0922          15205
+          0.10       segmented      32192           0.4467              0.0447       0.0812          30754
+          0.10 population-wide      32189           0.4877              0.0488       0.0887          30619
+  saved table: table_recall_by_anomaly_type.csv
+                   type   n  recall_segmented  recall_population_wide
+       A1_wre_inflation 644            0.0963                  0.0621
+    A2_business_expense 644            0.1522                  0.2143
+    A3_rental_deduction 644            0.2314                  0.3152
+    A4_taxable_identity 644            0.0140                  0.0202
+A5_invest_ded_no_income 643            0.0933                  0.0918
+  saved table: table_income_confounding.csv
+         design  n_flagged  median_income_flagged  income_multiple_of_population_median  pct_flagged_in_top_income_decile  pct_flagged_below_median_income  spearman_score_vs_income
+      segmented       6442               139872.0                                 2.408                             46.88                           17.665                      0.25
+population-wide       6438               135241.5                                 2.328                             46.07                           23.035                      0.14
+Flagged by both designs: 3,909  Jaccard=0.4357  Spearman(scores)=0.7954
+  saved table: table_flag_rate_by_segment.csv
+                                          n  flagged_segmented  flagged_population_wide  injected  rate_segmented_pct  rate_population_wide_pct  injected_rate_pct
+segment_name                                                                                                                                                      
+S0: Wage-dominant (mid income)       233317               4667                     2632      2246                2.00                      1.13               0.96
+S1: Pension/retirement (low income)   17834                357                      124        47                2.00                      0.70               0.26
+S2: Business-dominant (mid income)    18650                373                      684       546                2.00                      3.67               2.93
+S3: Investment-income (low income)    18758                376                     1546        79                2.00                      8.24               0.42
+S4: Other-income (mid income)          5402                109                      257        27                2.02                      4.76               0.50
+S5: Rental-property (low income)       9266                186                      572       180                2.01                      6.17               1.94
+S6: Trust/partnership (mid income)    14440                289                      621        94                2.00                      4.30               0.65
+S7: No/minimal reported income         4223                 85                        2         0                2.01                      0.05               0.00
+  saved figure: fig06_segmented_vs_global.png
+
+==============================================================================
+SECTION 13b - ABLATION: FEATURE SPACE x DESIGN (2% budget)
+==============================================================================
+Pre-specified sensitivity analysis: the same two designs are re-run on the behavioural ratio space only
+(no raw amounts), so that scale is carried by segmentation rather than by the detector.
+  saved table: table_ablation_feature_space.csv
+  saved table: table_ablation_recall_by_type.csv
+             feature_space          design  n_flagged  injected_recall  injected_precision  pr_auc_vs_injected  pct_flagged_in_top_income_decile  spearman_score_vs_income
+amounts + ratios (primary)       segmented       6442           0.1174              0.0587              0.0438                           46.8799                    0.2503
+amounts + ratios (primary) population-wide       6438           0.1407              0.0704              0.0508                           46.0702                    0.1400
+               ratios only       segmented       6442           0.3961              0.1979              0.2163                           15.5542                    0.1188
+               ratios only population-wide       6438           0.4169              0.2084              0.2248                           14.5853                   -0.0075
+feature_space           amounts + ratios (primary)                 ratios only                
+design                                   segmented population-wide   segmented population-wide
+type                                                                                          
+A1_wre_inflation                            0.0963          0.0621      0.2143          0.1149
+A2_business_expense                         0.1522          0.2143      0.3758          0.4860
+A3_rental_deduction                         0.2314          0.3152      0.3898          0.4705
+A4_taxable_identity                         0.0140          0.0202      0.0264          0.0233
+A5_invest_ded_no_income                     0.0933          0.0918      0.9751          0.9907
+Overlap between primary segmented flags and ratio-only segmented flags: 2,370
+
+==============================================================================
+SECTION 14 - STAGE 3: SUPERVISED CLASSIFICATION (injected labels)
+==============================================================================
+Target = injected synthetic anomaly (1) vs unmodified record (0).  This label is NOT a compliance outcome.
+
+==============================================================================
+SECTION 15 - STRATIFIED TRAIN/TEST SPLIT
+==============================================================================
+Train 225,323 (1.00% positive)   Test 96,567 (1.00% positive)
+
+==============================================================================
+SECTION 16 - TRAIN SUPERVISED MODELS
+==============================================================================
+  Random Forest: trained in 92.9s
+  Hist. Gradient Boosting: trained in 5.8s
+
+==============================================================================
+SECTION 17 - EVALUATION ON THE HOLD-OUT SET
+==============================================================================
+  saved table: table_supervised_evaluation.csv
+                  model     threshold  accuracy  precision  recall     f1  roc_auc  pr_auc    TN  FP  FN  TP  train_seconds
+          Random Forest          0.50    0.9983     0.8930  0.9420 0.9169   0.9997  0.9751 95492 109  56 910           92.9
+          Random Forest top 2% budget    0.9900     0.4992  0.9979 0.6655   0.9997  0.9751 94634 967   2 964           92.9
+Hist. Gradient Boosting          0.50    0.9961     0.7268  0.9803 0.8347   0.9965  0.9678 95245 356  19 947            5.8
+Hist. Gradient Boosting top 2% budget    0.9898     0.4961  0.9917 0.6614   0.9965  0.9678 94628 973   8 958            5.8
+  5-fold CV Random Forest: F1=0.9203+-0.0091  PR-AUC=0.9698
+  5-fold CV Hist. Gradient Boosting: F1=0.8560+-0.0279  PR-AUC=0.9739
+  saved table: table_supervised_cv.csv
+
+==============================================================================
+SECTION 18 - SUPERVISED VERSUS UNSUPERVISED ON THE SAME HOLD-OUT ROWS
+==============================================================================
+  saved table: table_supervised_vs_unsupervised.csv
+                                 method  n_flagged  precision  recall     f1  roc_auc  pr_auc
+       Isolation Forest, segmented (2%)       1923     0.0536  0.1066 0.0713   0.8146  0.0406
+ Isolation Forest, population-wide (2%)       1926     0.0639  0.1273 0.0851   0.8176  0.0480
+          Random Forest (top 2% budget)       1931     0.4992  0.9979 0.6655   0.9997  0.9751
+Hist. Gradient Boosting (top 2% budget)       1931     0.4961  0.9917 0.6614   0.9965  0.9678
+Natural (non-injected) segmented flags in test set: 1,820; RF calls 0.6% of them anomalous
+  saved figure: fig07_supervised_evaluation.png
+
+==============================================================================
+SECTION 19 - STAGE 4: SHAP EXPLAINABILITY
+==============================================================================
+Q1 - Segment membership: K-Means has no additive per-feature output, so a surrogate Random Forest is trained to
+     reproduce the cluster labels and SHAP is applied to the surrogate.  Surrogate fidelity is reported.
+     surrogate hold-out accuracy = 0.9974
+  saved table: table_shap_segmentation_importance.csv
+                    overall
+share_wage           0.0635
+share_business       0.0209
+share_investment     0.0193
+share_pension        0.0190
+share_trust          0.0156
+share_property       0.0125
+share_other          0.0083
+log_gross_activity   0.0057
+log_super_balance    0.0021
+  saved figure: fig08_shap_segmentation.png
+Q2 - Anomaly flags: TreeExplainer is exact for Isolation Forest.  SHAP values explain the average path length;
+     a NEGATIVE value shortens the path (more isolated), so 'contribution towards anomaly' = -SHAP.
+  saved table: table_shap_validity.csv
+ segment                                name  n_explained  spearman_shapsum_vs_score
+       0      S0: Wage-dominant (mid income)          600                        1.0
+       1 S1: Pension/retirement (low income)          600                        1.0
+       2  S2: Business-dominant (mid income)          600                        1.0
+       3  S3: Investment-income (low income)          600                        1.0
+       4       S4: Other-income (mid income)          409                        1.0
+       5    S5: Rental-property (low income)          486                        1.0
+       6  S6: Trust/partnership (mid income)          589                        1.0
+       7      S7: No/minimal reported income          385                        1.0
+
+==============================================================================
+SECTION 20 - GLOBAL SHAP EXPLANATIONS
+==============================================================================
+  saved table: table_shap_if_global_importance.csv
+                                mean_abs_shap  mean_contribution_flagged  mean_contribution_unflagged  corr_feature_value_vs_contribution
+log_Gross_rent_amt                     0.1964                     0.2808                      -0.0021                              0.7322
+log_Other_foreign_inc_amt              0.1889                     0.2698                      -0.0072                              0.7651
+log_Tot_CY_CG_amt                      0.1889                     0.2910                      -0.0024                              0.8069
+log_Spr_Prsnl_Contr                    0.1825                     0.2018                       0.0047                              0.7827
+log_Gift_amt                           0.1664                     0.1791                       0.0075                              0.8274
+log_Net_CG_amt                         0.1648                     0.2384                      -0.0025                              0.7584
+log_Asbl_forgn_source_incm_amt         0.1550                     0.2161                      -0.0001                              0.7869
+log_Unfranked_Div_amt                  0.1531                     0.1823                      -0.0030                              0.7562
+log_Rent_int_ded_amt                   0.1415                     0.1950                      -0.0055                              0.7490
+log_Spr_Emplr_Contr                    0.1307                     0.1123                      -0.0064                              0.7327
+log_Div_Ded_amt                        0.1237                     0.1856                      -0.0027                              0.5659
+log_Non_emp_spr_amt                    0.1233                     0.1659                      -0.0056                              0.6855
+deduction_to_income_ratio              0.1224                     0.2019                       0.0021                              0.9188
+log_Rent_cap_wks_amt                   0.1217                     0.1827                      -0.0003                              0.7407
+log_WRE_other_amt                      0.1190                     0.1269                      -0.0039                              0.6376
+  saved figure: fig09_shap_if_global.png
+Empirical single-feature flag thresholds: smallest feature value above which the flag rate is >= 10%, 25%, 50%
+  saved table: table_feature_flag_thresholds.csv
+  saved table: table_feature_flag_thresholds_pooled.csv
+                   feature  value_for_flag_rate_ge_10pct  value_for_flag_rate_ge_25pct  value_for_flag_rate_ge_50pct  flag_rate_in_top1pct_of_feature  feature_p99
+            Gross_rent_amt                      6833.597                           NaN                           NaN                             18.2     58116.75
+     Other_foreign_inc_amt                         1.000                       380.000                           NaN                             26.9      1710.00
+             Tot_CY_CG_amt                         2.000                           NaN                           NaN                             16.2     69780.77
+           Spr_Prsnl_Contr                       548.000                           NaN                           NaN                             17.4     59355.78
+                  Gift_amt                       651.000                           NaN                           NaN                             16.3      2634.11
+                Net_CG_amt                         3.000                           NaN                           NaN                             16.9     28761.33
+Asbl_forgn_source_incm_amt                         2.000                           NaN                           NaN                             14.6      5926.11
+         Unfranked_Div_amt                         2.000                           NaN                           NaN                             19.3      1117.11
+          Rent_int_ded_amt                       164.655                     59227.602                           NaN                             19.8     31072.33
+           Spr_Emplr_Contr                     19260.215                           NaN                           NaN                             16.1     30573.33
+  saved table: table_shap_rf_global_importance.csv
+Spearman between RF and Isolation Forest SHAP importance rankings: -0.0663
+  saved figure: fig11_shap_rf_global.png
+
+==============================================================================
+SECTION 21 - INDIVIDUAL TAXPAYER EXPLANATIONS (local SHAP)
+==============================================================================
+  saved figure: fig10a_waterfall.png
+  highest-score injected rental-deduction anomaly (A3): Ind=266175 S0: Wage-dominant (mid income) -> top features: personal_super_ratio=3.28 (+0.695), log_Div_Ded_amt=127,766.00 (+0.617), log_Tot_CY_CG_amt=37,774.00 (+0.580)
+  saved figure: fig10b_waterfall.png
+  highest-score natural (non-injected) profile: Ind=103340 S5: Rental-property (low income) -> top features: log_Other_foreign_inc_amt=6,431.00 (+0.774), gift_to_income_ratio=1.23 (+0.736), log_Net_CG_amt=84,172.00 (+0.693)
+  saved figure: fig10c_waterfall.png
+  borderline flagged profile: Ind=205253 S0: Wage-dominant (mid income) -> top features: log_ETP_txbl_amt=28,116.00 (+0.953), log_Unfranked_Div_amt=190.00 (+0.836), log_Div_Ded_amt=125.00 (+0.731)
+  saved figure: fig10_shap_local_waterfalls.png
+  saved table: table_local_explanations.csv
+  saved table: table_top15_review_list.csv
+
+==============================================================================
+SECTION 22 - FRAMEWORK DIAGRAM
+==============================================================================
+  saved figure: fig01_framework.png
+
+==============================================================================
+SECTION 23 - EXPORT
+==============================================================================
+Saved results/taxpayer_scores.csv (321,890 rows) and results/summary.json
+Total runtime: 1458.3 s
+DONE.  Reminder: an anomaly flag is a statistical signal relative to a peer group, not evidence of non-compliance.

@@ -1,0 +1,47 @@
+# --- Confidential ATO data: never commit the sample file or any row-level derivative ---
+data/
+../data/
+*sample_file*
+results/taxpayer_scores.csv
+results/console_output.txt
+tables/table_top15_review_list.csv
+tables/table_local_explanations.csv
+
+# --- Local build / cache / experiment folders ---
+__pycache__/
+*.pyc
+.assessment-deps/
+.chart-data-*/
+.presentation_build/
+ato_peer_normalised_output_*/
+assessment/
+output/
+presentation/
+.ipynb_checkpoints/
+
+# --- Superseded paper drafts (the submitted report is research_paper/Capstone_Report_v1.pdf) ---
+research_paper/draft_*.md
+research_paper/paper_numbered.md
+research_paper/Full_Project_Report.md
+research_paper/*.docx
+ato_peer_normalised_framework.ipynb
+ato_peer_normalised_research_paper.md
+
+# --- Paper-generation tooling (kept locally, not part of the framework) ---
+build_paper.py
+assemble_paper.py
+refs.py
+research_paper/paper.md
+tables/table_clustering_alternatives.csv
+
+# --- LaTeX build artifacts ---
+research_paper/latex/*.aux
+research_paper/latex/*.log
+research_paper/latex/*.blg
+research_paper/latex/*.bbl
+research_paper/latex/*.out
+research_paper/latex/*.toc
+research_paper/latex/*.lof
+research_paper/latex/*.lot
+research_paper/latex/*.synctex.gz
+research_paper/latex/_src/

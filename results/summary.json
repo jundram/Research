@@ -1,0 +1,1092 @@
+{
+  "data_source": "ATO 2022-23 individual sample file (2% sample of individual returns)",
+  "n_records": 321890,
+  "n_columns": 65,
+  "n_injected": 3219,
+  "injected_pct": 1.0,
+  "median_total_income": 58085.0,
+  "pct_agent_lodged": 62.89,
+  "n_amount_features_kept": 44,
+  "sparse_dropped": [
+    "Net_farm_management_amt",
+    "Net_PP_BI_amt",
+    "Total_PP_BI_amt",
+    "Total_PP_BE_amt",
+    "Taxed_othr_pnsn_amt",
+    "PP_loss_claimed",
+    "NPP_loss_claimed",
+    "Net_fincl_invstmt_lss_amt",
+    "TFN_amts_wheld_divs_amt",
+    "Hrs_to_prepare_BPI_cnt"
+  ],
+  "redundant_dropped": [
+    "Dividends_franking_cr_amt (r=0.998 with Frk_Div_amt)",
+    "Other_rent_ded_amt (r=0.992 with Gross_rent_amt)",
+    "Total_NPP_BE_amt (r=0.951 with Total_NPP_BI_amt)"
+  ],
+  "seg_features": [
+    "share_wage",
+    "share_business",
+    "share_property",
+    "share_investment",
+    "share_pension",
+    "share_trust",
+    "share_other",
+    "log_gross_activity",
+    "log_super_balance"
+  ],
+  "n_ad_features": 56,
+  "ratio_features": [
+    "deduction_to_income_ratio",
+    "wre_to_salary_ratio",
+    "business_expense_ratio",
+    "rental_deduction_ratio",
+    "taxable_income_ratio",
+    "investment_deduction_ratio",
+    "gift_to_income_ratio",
+    "tax_affairs_cost_ratio",
+    "personal_super_ratio",
+    "payg_instalment_ratio",
+    "items_reported",
+    "lodged_via_agent"
+  ],
+  "k_selected": 8,
+  "cluster_selection": [
+    {
+      "k": 3,
+      "inertia": 2003642.5549,
+      "silhouette": 0.5502,
+      "davies_bouldin": 1.7655,
+      "calinski_harabasz": 4405.1582,
+      "smallest_segment": 22566,
+      "largest_segment_pct": 73.3,
+      "seconds": 14.3
+    },
+    {
+      "k": 4,
+      "inertia": 1684469.4645,
+      "silhouette": 0.5758,
+      "davies_bouldin": 1.4294,
+      "calinski_harabasz": 4791.6508,
+      "smallest_segment": 14862,
+      "largest_segment_pct": 73.4,
+      "seconds": 10.7
+    },
+    {
+      "k": 5,
+      "inertia": 1392752.5385,
+      "silhouette": 0.6054,
+      "davies_bouldin": 1.323,
+      "calinski_harabasz": 5443.4864,
+      "smallest_segment": 14716,
+      "largest_segment_pct": 73.1,
+      "seconds": 11.4
+    },
+    {
+      "k": 6,
+      "inertia": 1129889.9992,
+      "silhouette": 0.6205,
+      "davies_bouldin": 1.132,
+      "calinski_harabasz": 6300.0544,
+      "smallest_segment": 5469,
+      "largest_segment_pct": 72.8,
+      "seconds": 10.6
+    },
+    {
+      "k": 7,
+      "inertia": 867603.2167,
+      "silhouette": 0.6433,
+      "davies_bouldin": 0.8647,
+      "calinski_harabasz": 7873.7966,
+      "smallest_segment": 5429,
+      "largest_segment_pct": 72.6,
+      "seconds": 12.2
+    },
+    {
+      "k": 8,
+      "inertia": 737232.6382,
+      "silhouette": 0.6528,
+      "davies_bouldin": 0.7186,
+      "calinski_harabasz": 8404.8105,
+      "smallest_segment": 4223,
+      "largest_segment_pct": 72.5,
+      "seconds": 14.2
+    },
+    {
+      "k": 9,
+      "inertia": 654198.1235,
+      "silhouette": 0.4173,
+      "davies_bouldin": 0.804,
+      "calinski_harabasz": 8626.9682,
+      "smallest_segment": 4205,
+      "largest_segment_pct": 58.2,
+      "seconds": 14.0
+    },
+    {
+      "k": 10,
+      "inertia": 604447.893,
+      "silhouette": 0.421,
+      "davies_bouldin": 0.8437,
+      "calinski_harabasz": 8479.4471,
+      "smallest_segment": 3228,
+      "largest_segment_pct": 58.0,
+      "seconds": 13.7
+    }
+  ],
+  "clustering_alternatives": [
+    {
+      "model": "K-Means (k=8)",
+      "silhouette": 0.6528,
+      "davies_bouldin": 0.7186,
+      "smallest_pct": 1.3119
+    },
+    {
+      "model": "Gaussian Mixture (diag, k=8)",
+      "silhouette": 0.1486,
+      "davies_bouldin": 2.5848,
+      "smallest_pct": 4.1971
+    },
+    {
+      "model": "Gaussian Mixture (full, k=8)",
+      "silhouette": 0.2016,
+      "davies_bouldin": 2.6426,
+      "smallest_pct": 4.1927
+    },
+    {
+      "model": "Ward agglomerative (k=8, 8,000-row sample)",
+      "silhouette": 0.6422,
+      "davies_bouldin": 0.7114,
+      "smallest_pct": 0.9375
+    }
+  ],
+  "segments": [
+    {
+      "segment": 0,
+      "name": "S0: Wage-dominant (mid income)",
+      "n": 233317,
+      "share_pct": 72.48,
+      "median_total_income": 67797.0,
+      "median_taxable_income": 64663.0,
+      "median_deductions": 1367.0,
+      "median_super_balance": 57133.0,
+      "pct_agent_lodged": 58.4,
+      "median_items_reported": 11.0,
+      "modal_age_range": 8,
+      "top_occupation": "Professionals",
+      "mean_share_wage": 0.941,
+      "mean_share_business": 0.007,
+      "mean_share_property": 0.017,
+      "mean_share_investment": 0.014,
+      "mean_share_pension": 0.01,
+      "mean_share_trust": 0.005,
+      "mean_share_other": 0.006
+    },
+    {
+      "segment": 1,
+      "name": "S1: Pension/retirement (low income)",
+      "n": 17834,
+      "share_pct": 5.54,
+      "median_total_income": 23327.0,
+      "median_taxable_income": 23010.5,
+      "median_deductions": 0.0,
+      "median_super_balance": 1721.5,
+      "pct_agent_lodged": 44.5,
+      "median_items_reported": 7.0,
+      "modal_age_range": 0,
+      "top_occupation": "Not stated",
+      "mean_share_wage": 0.12,
+      "mean_share_business": 0.012,
+      "mean_share_property": 0.009,
+      "mean_share_investment": 0.045,
+      "mean_share_pension": 0.788,
+      "mean_share_trust": 0.009,
+      "mean_share_other": 0.016
+    },
+    {
+      "segment": 2,
+      "name": "S2: Business-dominant (mid income)",
+      "n": 18650,
+      "share_pct": 5.79,
+      "median_total_income": 36148.0,
+      "median_taxable_income": 34556.5,
+      "median_deductions": 0.0,
+      "median_super_balance": 19855.5,
+      "pct_agent_lodged": 89.6,
+      "median_items_reported": 10.0,
+      "modal_age_range": 8,
+      "top_occupation": "Not stated",
+      "mean_share_wage": 0.066,
+      "mean_share_business": 0.879,
+      "mean_share_property": 0.016,
+      "mean_share_investment": 0.016,
+      "mean_share_pension": 0.012,
+      "mean_share_trust": 0.006,
+      "mean_share_other": 0.006
+    },
+    {
+      "segment": 3,
+      "name": "S3: Investment-income (low income)",
+      "n": 18758,
+      "share_pct": 5.83,
+      "median_total_income": 16659.0,
+      "median_taxable_income": 15323.0,
+      "median_deductions": 0.0,
+      "median_super_balance": 141883.0,
+      "pct_agent_lodged": 76.9,
+      "median_items_reported": 9.0,
+      "modal_age_range": 0,
+      "top_occupation": "Not stated",
+      "mean_share_wage": 0.038,
+      "mean_share_business": 0.006,
+      "mean_share_property": 0.02,
+      "mean_share_investment": 0.878,
+      "mean_share_pension": 0.012,
+      "mean_share_trust": 0.033,
+      "mean_share_other": 0.013
+    },
+    {
+      "segment": 4,
+      "name": "S4: Other-income (mid income)",
+      "n": 5402,
+      "share_pct": 1.68,
+      "median_total_income": 40794.5,
+      "median_taxable_income": 38157.0,
+      "median_deductions": 235.0,
+      "median_super_balance": 40881.5,
+      "pct_agent_lodged": 69.3,
+      "median_items_reported": 9.0,
+      "modal_age_range": 0,
+      "top_occupation": "Not stated",
+      "mean_share_wage": 0.12,
+      "mean_share_business": 0.017,
+      "mean_share_property": 0.021,
+      "mean_share_investment": 0.045,
+      "mean_share_pension": 0.029,
+      "mean_share_trust": 0.02,
+      "mean_share_other": 0.749
+    },
+    {
+      "segment": 5,
+      "name": "S5: Rental-property (low income)",
+      "n": 9266,
+      "share_pct": 2.88,
+      "median_total_income": 17606.5,
+      "median_taxable_income": 16515.5,
+      "median_deductions": 268.5,
+      "median_super_balance": 72392.5,
+      "pct_agent_lodged": 86.2,
+      "median_items_reported": 11.0,
+      "modal_age_range": 0,
+      "top_occupation": "Not stated",
+      "mean_share_wage": 0.098,
+      "mean_share_business": 0.016,
+      "mean_share_property": 0.762,
+      "mean_share_investment": 0.076,
+      "mean_share_pension": 0.013,
+      "mean_share_trust": 0.024,
+      "mean_share_other": 0.01
+    },
+    {
+      "segment": 6,
+      "name": "S6: Trust/partnership (mid income)",
+      "n": 14440,
+      "share_pct": 4.49,
+      "median_total_income": 65278.0,
+      "median_taxable_income": 58038.5,
+      "median_deductions": 184.0,
+      "median_super_balance": 75413.0,
+      "pct_agent_lodged": 96.5,
+      "median_items_reported": 10.0,
+      "modal_age_range": 0,
+      "top_occupation": "Not stated",
+      "mean_share_wage": 0.082,
+      "mean_share_business": 0.008,
+      "mean_share_property": 0.027,
+      "mean_share_investment": 0.052,
+      "mean_share_pension": 0.006,
+      "mean_share_trust": 0.812,
+      "mean_share_other": 0.014
+    },
+    {
+      "segment": 7,
+      "name": "S7: No/minimal reported income",
+      "n": 4223,
+      "share_pct": 1.31,
+      "median_total_income": 0.0,
+      "median_taxable_income": 0.0,
+      "median_deductions": 0.0,
+      "median_super_balance": 0.0,
+      "pct_agent_lodged": 36.3,
+      "median_items_reported": 1.0,
+      "modal_age_range": 8,
+      "top_occupation": "Not stated",
+      "mean_share_wage": 0.001,
+      "mean_share_business": 0.002,
+      "mean_share_property": 0.0,
+      "mean_share_investment": 0.235,
+      "mean_share_pension": 0.0,
+      "mean_share_trust": 0.002,
+      "mean_share_other": 0.001
+    }
+  ],
+  "n_flagged_seg": 6442,
+  "segment_thresholds": [
+    {
+      "segment": 0,
+      "name": "S0: Wage-dominant (mid income)",
+      "n": 233317,
+      "threshold_1pct": 0.5616,
+      "n_flagged_1pct": 2334,
+      "threshold_2pct": 0.5332,
+      "n_flagged_2pct": 4667,
+      "threshold_5pct": 0.4915,
+      "n_flagged_5pct": 11666,
+      "threshold_10pct": 0.4567,
+      "n_flagged_10pct": 23332
+    },
+    {
+      "segment": 1,
+      "name": "S1: Pension/retirement (low income)",
+      "n": 17834,
+      "threshold_1pct": 0.5603,
+      "n_flagged_1pct": 179,
+      "threshold_2pct": 0.5294,
+      "n_flagged_2pct": 357,
+      "threshold_5pct": 0.4835,
+      "n_flagged_5pct": 892,
+      "threshold_10pct": 0.4472,
+      "n_flagged_10pct": 1784
+    },
+    {
+      "segment": 2,
+      "name": "S2: Business-dominant (mid income)",
+      "n": 18650,
+      "threshold_1pct": 0.5768,
+      "n_flagged_1pct": 187,
+      "threshold_2pct": 0.5425,
+      "n_flagged_2pct": 373,
+      "threshold_5pct": 0.496,
+      "n_flagged_5pct": 933,
+      "threshold_10pct": 0.4553,
+      "n_flagged_10pct": 1865
+    },
+    {
+      "segment": 3,
+      "name": "S3: Investment-income (low income)",
+      "n": 18758,
+      "threshold_1pct": 0.5628,
+      "n_flagged_1pct": 188,
+      "threshold_2pct": 0.5449,
+      "n_flagged_2pct": 376,
+      "threshold_5pct": 0.5102,
+      "n_flagged_5pct": 938,
+      "threshold_10pct": 0.4781,
+      "n_flagged_10pct": 1876
+    },
+    {
+      "segment": 4,
+      "name": "S4: Other-income (mid income)",
+      "n": 5402,
+      "threshold_1pct": 0.547,
+      "n_flagged_1pct": 55,
+      "threshold_2pct": 0.5286,
+      "n_flagged_2pct": 109,
+      "threshold_5pct": 0.4921,
+      "n_flagged_5pct": 271,
+      "threshold_10pct": 0.4641,
+      "n_flagged_10pct": 541
+    },
+    {
+      "segment": 5,
+      "name": "S5: Rental-property (low income)",
+      "n": 9266,
+      "threshold_1pct": 0.5509,
+      "n_flagged_1pct": 93,
+      "threshold_2pct": 0.5263,
+      "n_flagged_2pct": 186,
+      "threshold_5pct": 0.4929,
+      "n_flagged_5pct": 464,
+      "threshold_10pct": 0.4615,
+      "n_flagged_10pct": 927
+    },
+    {
+      "segment": 6,
+      "name": "S6: Trust/partnership (mid income)",
+      "n": 14440,
+      "threshold_1pct": 0.5459,
+      "n_flagged_1pct": 145,
+      "threshold_2pct": 0.5234,
+      "n_flagged_2pct": 289,
+      "threshold_5pct": 0.4892,
+      "n_flagged_5pct": 722,
+      "threshold_10pct": 0.458,
+      "n_flagged_10pct": 1444
+    },
+    {
+      "segment": 7,
+      "name": "S7: No/minimal reported income",
+      "n": 4223,
+      "threshold_1pct": 0.5761,
+      "n_flagged_1pct": 43,
+      "threshold_2pct": 0.5394,
+      "n_flagged_2pct": 85,
+      "threshold_5pct": 0.4854,
+      "n_flagged_5pct": 212,
+      "threshold_10pct": 0.441,
+      "n_flagged_10pct": 423
+    }
+  ],
+  "flag_overlap_both": 3909,
+  "flag_jaccard": 0.4357,
+  "score_spearman_seg_vs_glob": 0.7954,
+  "contamination_sweep": [
+    {
+      "contamination": 0.01,
+      "design": "segmented",
+      "n_flagged": 3224,
+      "injected_recall": 0.0677,
+      "injected_precision": 0.0676,
+      "injected_f1": 0.0677,
+      "natural_flags": 3006
+    },
+    {
+      "contamination": 0.01,
+      "design": "population-wide",
+      "n_flagged": 3219,
+      "injected_recall": 0.0826,
+      "injected_precision": 0.0826,
+      "injected_f1": 0.0826,
+      "natural_flags": 2953
+    },
+    {
+      "contamination": 0.02,
+      "design": "segmented",
+      "n_flagged": 6442,
+      "injected_recall": 0.1174,
+      "injected_precision": 0.0587,
+      "injected_f1": 0.0783,
+      "natural_flags": 6064
+    },
+    {
+      "contamination": 0.02,
+      "design": "population-wide",
+      "n_flagged": 6438,
+      "injected_recall": 0.1407,
+      "injected_precision": 0.0704,
+      "injected_f1": 0.0938,
+      "natural_flags": 5985
+    },
+    {
+      "contamination": 0.05,
+      "design": "segmented",
+      "n_flagged": 16098,
+      "injected_recall": 0.2513,
+      "injected_precision": 0.0503,
+      "injected_f1": 0.0838,
+      "natural_flags": 15289
+    },
+    {
+      "contamination": 0.05,
+      "design": "population-wide",
+      "n_flagged": 16095,
+      "injected_recall": 0.2765,
+      "injected_precision": 0.0553,
+      "injected_f1": 0.0922,
+      "natural_flags": 15205
+    },
+    {
+      "contamination": 0.1,
+      "design": "segmented",
+      "n_flagged": 32192,
+      "injected_recall": 0.4467,
+      "injected_precision": 0.0447,
+      "injected_f1": 0.0812,
+      "natural_flags": 30754
+    },
+    {
+      "contamination": 0.1,
+      "design": "population-wide",
+      "n_flagged": 32189,
+      "injected_recall": 0.4877,
+      "injected_precision": 0.0488,
+      "injected_f1": 0.0887,
+      "natural_flags": 30619
+    }
+  ],
+  "recall_by_type": [
+    {
+      "type": "A1_wre_inflation",
+      "n": 644,
+      "recall_segmented": 0.0963,
+      "recall_population_wide": 0.0621
+    },
+    {
+      "type": "A2_business_expense",
+      "n": 644,
+      "recall_segmented": 0.1522,
+      "recall_population_wide": 0.2143
+    },
+    {
+      "type": "A3_rental_deduction",
+      "n": 644,
+      "recall_segmented": 0.2314,
+      "recall_population_wide": 0.3152
+    },
+    {
+      "type": "A4_taxable_identity",
+      "n": 644,
+      "recall_segmented": 0.014,
+      "recall_population_wide": 0.0202
+    },
+    {
+      "type": "A5_invest_ded_no_income",
+      "n": 643,
+      "recall_segmented": 0.0933,
+      "recall_population_wide": 0.0918
+    }
+  ],
+  "income_confounding": [
+    {
+      "design": "segmented",
+      "n_flagged": 6442,
+      "median_income_flagged": 139872.0,
+      "income_multiple_of_population_median": 2.408,
+      "pct_flagged_in_top_income_decile": 46.88,
+      "pct_flagged_below_median_income": 17.665,
+      "spearman_score_vs_income": 0.25
+    },
+    {
+      "design": "population-wide",
+      "n_flagged": 6438,
+      "median_income_flagged": 135241.5,
+      "income_multiple_of_population_median": 2.328,
+      "pct_flagged_in_top_income_decile": 46.07,
+      "pct_flagged_below_median_income": 23.035,
+      "spearman_score_vs_income": 0.14
+    }
+  ],
+  "flag_rate_by_segment": [
+    {
+      "segment_name": "S0: Wage-dominant (mid income)",
+      "n": 233317,
+      "flagged_segmented": 4667,
+      "flagged_population_wide": 2632,
+      "injected": 2246,
+      "rate_segmented_pct": 2.0,
+      "rate_population_wide_pct": 1.13,
+      "injected_rate_pct": 0.96
+    },
+    {
+      "segment_name": "S1: Pension/retirement (low income)",
+      "n": 17834,
+      "flagged_segmented": 357,
+      "flagged_population_wide": 124,
+      "injected": 47,
+      "rate_segmented_pct": 2.0,
+      "rate_population_wide_pct": 0.7,
+      "injected_rate_pct": 0.26
+    },
+    {
+      "segment_name": "S2: Business-dominant (mid income)",
+      "n": 18650,
+      "flagged_segmented": 373,
+      "flagged_population_wide": 684,
+      "injected": 546,
+      "rate_segmented_pct": 2.0,
+      "rate_population_wide_pct": 3.67,
+      "injected_rate_pct": 2.93
+    },
+    {
+      "segment_name": "S3: Investment-income (low income)",
+      "n": 18758,
+      "flagged_segmented": 376,
+      "flagged_population_wide": 1546,
+      "injected": 79,
+      "rate_segmented_pct": 2.0,
+      "rate_population_wide_pct": 8.24,
+      "injected_rate_pct": 0.42
+    },
+    {
+      "segment_name": "S4: Other-income (mid income)",
+      "n": 5402,
+      "flagged_segmented": 109,
+      "flagged_population_wide": 257,
+      "injected": 27,
+      "rate_segmented_pct": 2.02,
+      "rate_population_wide_pct": 4.76,
+      "injected_rate_pct": 0.5
+    },
+    {
+      "segment_name": "S5: Rental-property (low income)",
+      "n": 9266,
+      "flagged_segmented": 186,
+      "flagged_population_wide": 572,
+      "injected": 180,
+      "rate_segmented_pct": 2.01,
+      "rate_population_wide_pct": 6.17,
+      "injected_rate_pct": 1.94
+    },
+    {
+      "segment_name": "S6: Trust/partnership (mid income)",
+      "n": 14440,
+      "flagged_segmented": 289,
+      "flagged_population_wide": 621,
+      "injected": 94,
+      "rate_segmented_pct": 2.0,
+      "rate_population_wide_pct": 4.3,
+      "injected_rate_pct": 0.65
+    },
+    {
+      "segment_name": "S7: No/minimal reported income",
+      "n": 4223,
+      "flagged_segmented": 85,
+      "flagged_population_wide": 2,
+      "injected": 0,
+      "rate_segmented_pct": 2.01,
+      "rate_population_wide_pct": 0.05,
+      "injected_rate_pct": 0.0
+    }
+  ],
+  "ablation": [
+    {
+      "feature_space": "amounts + ratios (primary)",
+      "design": "segmented",
+      "n_flagged": 6442,
+      "injected_recall": 0.1174,
+      "injected_precision": 0.0587,
+      "pr_auc_vs_injected": 0.0438,
+      "pct_flagged_in_top_income_decile": 46.8799,
+      "spearman_score_vs_income": 0.2503
+    },
+    {
+      "feature_space": "amounts + ratios (primary)",
+      "design": "population-wide",
+      "n_flagged": 6438,
+      "injected_recall": 0.1407,
+      "injected_precision": 0.0704,
+      "pr_auc_vs_injected": 0.0508,
+      "pct_flagged_in_top_income_decile": 46.0702,
+      "spearman_score_vs_income": 0.14
+    },
+    {
+      "feature_space": "ratios only",
+      "design": "segmented",
+      "n_flagged": 6442,
+      "injected_recall": 0.3961,
+      "injected_precision": 0.1979,
+      "pr_auc_vs_injected": 0.2163,
+      "pct_flagged_in_top_income_decile": 15.5542,
+      "spearman_score_vs_income": 0.1188
+    },
+    {
+      "feature_space": "ratios only",
+      "design": "population-wide",
+      "n_flagged": 6438,
+      "injected_recall": 0.4169,
+      "injected_precision": 0.2084,
+      "pr_auc_vs_injected": 0.2248,
+      "pct_flagged_in_top_income_decile": 14.5853,
+      "spearman_score_vs_income": -0.0075
+    }
+  ],
+  "ablation_overlap_ratio_seg_vs_primary_seg": 2370,
+  "n_train": 225323,
+  "n_test": 96567,
+  "test_positive_pct": 1.0,
+  "supervised_eval": [
+    {
+      "model": "Random Forest",
+      "threshold": "0.50",
+      "accuracy": 0.9983,
+      "precision": 0.893,
+      "recall": 0.942,
+      "f1": 0.9169,
+      "roc_auc": 0.9997,
+      "pr_auc": 0.9751,
+      "TN": 95492,
+      "FP": 109,
+      "FN": 56,
+      "TP": 910,
+      "train_seconds": 92.9
+    },
+    {
+      "model": "Random Forest",
+      "threshold": "top 2% budget",
+      "accuracy": 0.99,
+      "precision": 0.4992,
+      "recall": 0.9979,
+      "f1": 0.6655,
+      "roc_auc": 0.9997,
+      "pr_auc": 0.9751,
+      "TN": 94634,
+      "FP": 967,
+      "FN": 2,
+      "TP": 964,
+      "train_seconds": 92.9
+    },
+    {
+      "model": "Hist. Gradient Boosting",
+      "threshold": "0.50",
+      "accuracy": 0.9961,
+      "precision": 0.7268,
+      "recall": 0.9803,
+      "f1": 0.8347,
+      "roc_auc": 0.9965,
+      "pr_auc": 0.9678,
+      "TN": 95245,
+      "FP": 356,
+      "FN": 19,
+      "TP": 947,
+      "train_seconds": 5.8
+    },
+    {
+      "model": "Hist. Gradient Boosting",
+      "threshold": "top 2% budget",
+      "accuracy": 0.9898,
+      "precision": 0.4961,
+      "recall": 0.9917,
+      "f1": 0.6614,
+      "roc_auc": 0.9965,
+      "pr_auc": 0.9678,
+      "TN": 94628,
+      "FP": 973,
+      "FN": 8,
+      "TP": 958,
+      "train_seconds": 5.8
+    }
+  ],
+  "supervised_cv": [
+    {
+      "model": "Random Forest",
+      "f1_mean": 0.9203,
+      "f1_sd": 0.0091,
+      "roc_auc_mean": 0.9997,
+      "roc_auc_sd": 0.0,
+      "pr_auc_mean": 0.9698,
+      "pr_auc_sd": 0.0051,
+      "seconds": 534.7
+    },
+    {
+      "model": "Hist. Gradient Boosting",
+      "f1_mean": 0.856,
+      "f1_sd": 0.0279,
+      "roc_auc_mean": 0.998,
+      "roc_auc_sd": 0.001,
+      "pr_auc_mean": 0.9739,
+      "pr_auc_sd": 0.0044,
+      "seconds": 38.5
+    }
+  ],
+  "supervised_vs_unsupervised": [
+    {
+      "method": "Isolation Forest, segmented (2%)",
+      "n_flagged": 1923,
+      "precision": 0.0536,
+      "recall": 0.1066,
+      "f1": 0.0713,
+      "roc_auc": 0.8146,
+      "pr_auc": 0.0406
+    },
+    {
+      "method": "Isolation Forest, population-wide (2%)",
+      "n_flagged": 1926,
+      "precision": 0.0639,
+      "recall": 0.1273,
+      "f1": 0.0851,
+      "roc_auc": 0.8176,
+      "pr_auc": 0.048
+    },
+    {
+      "method": "Random Forest (top 2% budget)",
+      "n_flagged": 1931,
+      "precision": 0.4992,
+      "recall": 0.9979,
+      "f1": 0.6655,
+      "roc_auc": 0.9997,
+      "pr_auc": 0.9751
+    },
+    {
+      "method": "Hist. Gradient Boosting (top 2% budget)",
+      "n_flagged": 1931,
+      "precision": 0.4961,
+      "recall": 0.9917,
+      "f1": 0.6614,
+      "roc_auc": 0.9965,
+      "pr_auc": 0.9678
+    }
+  ],
+  "natural_seg_flags_in_test": 1820,
+  "natural_seg_flags_rf_prob_median": 0.0033,
+  "natural_seg_flags_rf_positive_pct": 0.6,
+  "surrogate_accuracy": 0.9974,
+  "shap_segmentation_top": {
+    "share_wage": 0.0635,
+    "share_business": 0.0209,
+    "share_investment": 0.0193,
+    "share_pension": 0.019,
+    "share_trust": 0.0156
+  },
+  "shap_if_top10": {
+    "log_Gross_rent_amt": 0.1964,
+    "log_Other_foreign_inc_amt": 0.1889,
+    "log_Tot_CY_CG_amt": 0.1889,
+    "log_Spr_Prsnl_Contr": 0.1825,
+    "log_Gift_amt": 0.1664,
+    "log_Net_CG_amt": 0.1648,
+    "log_Asbl_forgn_source_incm_amt": 0.155,
+    "log_Unfranked_Div_amt": 0.1531,
+    "log_Rent_int_ded_amt": 0.1415,
+    "log_Spr_Emplr_Contr": 0.1307
+  },
+  "shap_if_top10_share": 0.3059,
+  "feature_flag_thresholds_pooled": [
+    {
+      "feature": "Gross_rent_amt",
+      "value_for_flag_rate_ge_10pct": 6833.597,
+      "value_for_flag_rate_ge_25pct": NaN,
+      "value_for_flag_rate_ge_50pct": NaN,
+      "flag_rate_in_top1pct_of_feature": 18.2,
+      "feature_p99": 58116.75
+    },
+    {
+      "feature": "Other_foreign_inc_amt",
+      "value_for_flag_rate_ge_10pct": 1.0,
+      "value_for_flag_rate_ge_25pct": 380.0,
+      "value_for_flag_rate_ge_50pct": NaN,
+      "flag_rate_in_top1pct_of_feature": 26.9,
+      "feature_p99": 1710.0
+    },
+    {
+      "feature": "Tot_CY_CG_amt",
+      "value_for_flag_rate_ge_10pct": 2.0,
+      "value_for_flag_rate_ge_25pct": NaN,
+      "value_for_flag_rate_ge_50pct": NaN,
+      "flag_rate_in_top1pct_of_feature": 16.2,
+      "feature_p99": 69780.77
+    },
+    {
+      "feature": "Spr_Prsnl_Contr",
+      "value_for_flag_rate_ge_10pct": 548.0,
+      "value_for_flag_rate_ge_25pct": NaN,
+      "value_for_flag_rate_ge_50pct": NaN,
+      "flag_rate_in_top1pct_of_feature": 17.4,
+      "feature_p99": 59355.78
+    },
+    {
+      "feature": "Gift_amt",
+      "value_for_flag_rate_ge_10pct": 651.0,
+      "value_for_flag_rate_ge_25pct": NaN,
+      "value_for_flag_rate_ge_50pct": NaN,
+      "flag_rate_in_top1pct_of_feature": 16.3,
+      "feature_p99": 2634.11
+    },
+    {
+      "feature": "Net_CG_amt",
+      "value_for_flag_rate_ge_10pct": 3.0,
+      "value_for_flag_rate_ge_25pct": NaN,
+      "value_for_flag_rate_ge_50pct": NaN,
+      "flag_rate_in_top1pct_of_feature": 16.9,
+      "feature_p99": 28761.33
+    },
+    {
+      "feature": "Asbl_forgn_source_incm_amt",
+      "value_for_flag_rate_ge_10pct": 2.0,
+      "value_for_flag_rate_ge_25pct": NaN,
+      "value_for_flag_rate_ge_50pct": NaN,
+      "flag_rate_in_top1pct_of_feature": 14.6,
+      "feature_p99": 5926.11
+    },
+    {
+      "feature": "Unfranked_Div_amt",
+      "value_for_flag_rate_ge_10pct": 2.0,
+      "value_for_flag_rate_ge_25pct": NaN,
+      "value_for_flag_rate_ge_50pct": NaN,
+      "flag_rate_in_top1pct_of_feature": 19.3,
+      "feature_p99": 1117.11
+    },
+    {
+      "feature": "Rent_int_ded_amt",
+      "value_for_flag_rate_ge_10pct": 164.655,
+      "value_for_flag_rate_ge_25pct": 59227.602,
+      "value_for_flag_rate_ge_50pct": NaN,
+      "flag_rate_in_top1pct_of_feature": 19.8,
+      "feature_p99": 31072.33
+    },
+    {
+      "feature": "Spr_Emplr_Contr",
+      "value_for_flag_rate_ge_10pct": 19260.215,
+      "value_for_flag_rate_ge_25pct": NaN,
+      "value_for_flag_rate_ge_50pct": NaN,
+      "flag_rate_in_top1pct_of_feature": 16.1,
+      "feature_p99": 30573.33
+    }
+  ],
+  "shap_rf_top10": {
+    "taxable_income_ratio": 0.0947,
+    "deduction_to_income_ratio": 0.0477,
+    "rental_deduction_ratio": 0.035,
+    "business_expense_ratio": 0.0282,
+    "log_Net_rent_amt": 0.026,
+    "log_Tot_IncLoss_amt": 0.0249,
+    "log_Taxable_Income": 0.0242,
+    "log_Tot_ded_amt": 0.0231,
+    "log_Total_NPP_BI_amt": 0.0206,
+    "log_Net_NPP_BI_amt": 0.0199
+  },
+  "spearman_rf_vs_if_importance": -0.0663,
+  "local_cases": [
+    {
+      "case": "highest-score injected rental-deduction anomaly (A3)",
+      "Ind": 266175,
+      "segment": "S0: Wage-dominant (mid income)",
+      "injected_type": "A3_rental_deduction",
+      "anomaly_score": 0.7168,
+      "feature": "personal_super_ratio",
+      "feature_value": 3.282,
+      "contribution_towards_anomaly": 0.6951
+    },
+    {
+      "case": "highest-score injected rental-deduction anomaly (A3)",
+      "Ind": 266175,
+      "segment": "S0: Wage-dominant (mid income)",
+      "injected_type": "A3_rental_deduction",
+      "anomaly_score": 0.7168,
+      "feature": "log_Div_Ded_amt",
+      "feature_value": 127766.0,
+      "contribution_towards_anomaly": 0.6172
+    },
+    {
+      "case": "highest-score injected rental-deduction anomaly (A3)",
+      "Ind": 266175,
+      "segment": "S0: Wage-dominant (mid income)",
+      "injected_type": "A3_rental_deduction",
+      "anomaly_score": 0.7168,
+      "feature": "log_Tot_CY_CG_amt",
+      "feature_value": 37774.0,
+      "contribution_towards_anomaly": 0.5805
+    },
+    {
+      "case": "highest-score injected rental-deduction anomaly (A3)",
+      "Ind": 266175,
+      "segment": "S0: Wage-dominant (mid income)",
+      "injected_type": "A3_rental_deduction",
+      "anomaly_score": 0.7168,
+      "feature": "tax_affairs_cost_ratio",
+      "feature_value": 1.0,
+      "contribution_towards_anomaly": 0.5467
+    },
+    {
+      "case": "highest-score injected rental-deduction anomaly (A3)",
+      "Ind": 266175,
+      "segment": "S0: Wage-dominant (mid income)",
+      "injected_type": "A3_rental_deduction",
+      "anomaly_score": 0.7168,
+      "feature": "log_Unfranked_Div_amt",
+      "feature_value": 35763.0,
+      "contribution_towards_anomaly": 0.5351
+    },
+    {
+      "case": "highest-score natural (non-injected) profile",
+      "Ind": 103340,
+      "segment": "S5: Rental-property (low income)",
+      "injected_type": "none",
+      "anomaly_score": 0.6505,
+      "feature": "log_Other_foreign_inc_amt",
+      "feature_value": 6431.0,
+      "contribution_towards_anomaly": 0.7743
+    },
+    {
+      "case": "highest-score natural (non-injected) profile",
+      "Ind": 103340,
+      "segment": "S5: Rental-property (low income)",
+      "injected_type": "none",
+      "anomaly_score": 0.6505,
+      "feature": "gift_to_income_ratio",
+      "feature_value": 1.233,
+      "contribution_towards_anomaly": 0.7356
+    },
+    {
+      "case": "highest-score natural (non-injected) profile",
+      "Ind": 103340,
+      "segment": "S5: Rental-property (low income)",
+      "injected_type": "none",
+      "anomaly_score": 0.6505,
+      "feature": "log_Net_CG_amt",
+      "feature_value": 84172.0,
+      "contribution_towards_anomaly": 0.6926
+    },
+    {
+      "case": "highest-score natural (non-injected) profile",
+      "Ind": 103340,
+      "segment": "S5: Rental-property (low income)",
+      "injected_type": "none",
+      "anomaly_score": 0.6505,
+      "feature": "log_Other_inc_amt",
+      "feature_value": 43304.0,
+      "contribution_towards_anomaly": 0.6405
+    },
+    {
+      "case": "highest-score natural (non-injected) profile",
+      "Ind": 103340,
+      "segment": "S5: Rental-property (low income)",
+      "injected_type": "none",
+      "anomaly_score": 0.6505,
+      "feature": "deduction_to_income_ratio",
+      "feature_value": 3.255,
+      "contribution_towards_anomaly": 0.6048
+    },
+    {
+      "case": "borderline flagged profile",
+      "Ind": 205253,
+      "segment": "S0: Wage-dominant (mid income)",
+      "injected_type": "none",
+      "anomaly_score": 0.5332,
+      "feature": "log_ETP_txbl_amt",
+      "feature_value": 28116.0,
+      "contribution_towards_anomaly": 0.9527
+    },
+    {
+      "case": "borderline flagged profile",
+      "Ind": 205253,
+      "segment": "S0: Wage-dominant (mid income)",
+      "injected_type": "none",
+      "anomaly_score": 0.5332,
+      "feature": "log_Unfranked_Div_amt",
+      "feature_value": 190.0,
+      "contribution_towards_anomaly": 0.8356
+    },
+    {
+      "case": "borderline flagged profile",
+      "Ind": 205253,
+      "segment": "S0: Wage-dominant (mid income)",
+      "injected_type": "none",
+      "anomaly_score": 0.5332,
+      "feature": "log_Div_Ded_amt",
+      "feature_value": 125.0,
+      "contribution_towards_anomaly": 0.7309
+    },
+    {
+      "case": "borderline flagged profile",
+      "Ind": 205253,
+      "segment": "S0: Wage-dominant (mid income)",
+      "injected_type": "none",
+      "anomaly_score": 0.5332,
+      "feature": "log_Other_inc_amt",
+      "feature_value": 101728.0,
+      "contribution_towards_anomaly": 0.7234
+    },
+    {
+      "case": "borderline flagged profile",
+      "Ind": 205253,
+      "segment": "S0: Wage-dominant (mid income)",
+      "injected_type": "none",
+      "anomaly_score": 0.5332,
+      "feature": "log_Other_Ded_amt",
+      "feature_value": 2851.0,
+      "contribution_towards_anomaly": 0.4532
+    }
+  ],
+  "runtime_seconds": 1458.3,
+  "natural_flags_seg": 6064,
+  "natural_flags_glob": 5985
+}
