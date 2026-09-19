@@ -1,0 +1,5 @@
+feature_space,design,n_flagged,pct_flagged_in_top_income_decile,pct_flagged_below_median_income,spearman_score_vs_income,jaccard_with_primary_segmented,median_deduction_to_income_flagged
+amounts + ratios (primary),segmented,6442,48.7892,14.4676,0.2869,1.0,0.0586
+amounts + ratios (primary),population-wide,6438,49.5495,18.4995,0.1915,0.411,0.0941
+ratios only,segmented,6442,18.6743,45.8088,0.1201,0.2372,0.2349
+ratios only,population-wide,6438,18.3287,55.1724,0.0177,0.1705,0.2949

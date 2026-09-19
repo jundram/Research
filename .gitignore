@@ -45,3 +45,10 @@ research_paper/latex/*.lof
 research_paper/latex/*.lot
 research_paper/latex/*.synctex.gz
 research_paper/latex/_src/
+
+# --- real-only run: same row-level exclusions ---
+results_real/taxpayer_scores.csv
+results_real/console_output.txt
+tables_real/table_top15_review_list.csv
+tables_real/table_local_explanations.csv
+tables_real/table_clustering_alternatives.csv

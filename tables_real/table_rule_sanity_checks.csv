@@ -1,0 +1,9 @@
+rule,pct_all,pct_flagged_segmented,pct_unflagged_segmented,lift_segmented,pct_flagged_population_wide,pct_unflagged_population_wide,lift_population_wide
+deductions_exceed_income,0.986,3.819,0.928,4.114,6.073,0.882,6.884
+claims_item_rare_in_segment,18.747,84.446,17.405,4.852,68.593,17.73,3.869
+claims_3plus_rare_items,1.428,22.679,0.994,22.806,15.144,1.149,13.186
+deduction_ratio_above_segment_p99,1.002,8.988,0.838,10.719,7.813,0.863,9.058
+wre_above_25pct_of_salary,0.614,1.304,0.6,2.174,0.87,0.609,1.429
+rental_deductions_above_3x_rent,0.117,1.382,0.092,15.08,1.413,0.091,15.536
+investment_deductions_no_investment_income,0.038,0.171,0.036,4.809,0.109,0.037,2.957
+taxable_income_identity_off_by_10pct,0.0,0.0,0.0,0.0,0.0,0.0,0.0

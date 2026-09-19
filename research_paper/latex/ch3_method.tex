@@ -2,7 +2,7 @@
 
 \subsection{Overall Framework}
 
-Fig.~\ref{fig:framework} summarises the pipeline: raw taxpayer data $\rightarrow$ preprocessing $\rightarrow$ feature engineering $\rightarrow$ Stage 1 segmentation $\rightarrow$ peer-group formation $\rightarrow$ Stage 2 Isolation Forest within each peer group $\rightarrow$ Stage 3 supervised classification $\rightarrow$ Stage 4 SHAP $\rightarrow$ risk interpretation and visualisation. Segmentation precedes anomaly detection because the reference population must be fixed before ``unusual'' can be defined: a forest fitted to the whole population isolates whatever is globally rare, whereas a forest fitted within a peer group isolates what is rare among similar taxpayers. The supervised stage uses injected labels to measure how far documented mechanisms are learnable and to provide a calibrated comparator for the unsupervised scores. The SHAP explainability describes both segment and anomaly score into which feature have mostly contributed to anomaly.
+Fig.~\ref{fig:framework} summarises the pipeline: raw taxpayer data $\rightarrow$ preprocessing $\rightarrow$ feature engineering $\rightarrow$ Stage 1 segmentation $\rightarrow$ peer-group formation $\rightarrow$ Stage 2 Isolation Forest within each peer group $\rightarrow$ Stage 3 supervised classification $\rightarrow$ Stage 4 SHAP $\rightarrow$ risk interpretation and visualisation. Segmentation precedes anomaly detection because the reference population must be fixed before ``unusual'' can be defined: a forest fitted to the whole population isolates whatever is globally rare, whereas a forest fitted within a peer group isolates what is rare among similar taxpayers. The SHAP explainability describes both segment and anomaly score into which feature have mostly contributed to anomaly.
 
 \begin{figure}[H]
     \centering
@@ -55,7 +55,7 @@ The data has sixty five variables belonging to several groups. Seven of them bel
     \end{tabular}
 \end{table}
 
-Dataset has no blank cell and no duplicates as these information has been extracted from ATO dataset. Every zero amount reported in the dataset means it was not reported by taxpayer and was treated as information. The ATO sample file does not have any variable for tax amount, tax refund amount, lodgment dates, or audit outcome, so ratios involving tax paid, refunds, late filing cannot be included in this research. As there is no compliance label exist in the data, synthetic anomalies are injected (Section~\ref{sec:injection}) in detection metrics.
+Dataset has no blank cell and no duplicates as these information has been extracted from ATO dataset. Every zero amount reported in the dataset means it was not reported by taxpayer and was treated as information. The ATO sample file does not have any variable for tax amount, tax refund amount, lodgment dates, or audit outcome, so ratios involving tax paid, refunds, late filing cannot be included in this research.
 
 \begin{figure}[H]
     \centering
@@ -65,7 +65,6 @@ Dataset has no blank cell and no duplicates as these information has been extrac
 \end{figure}
 
 \subsection{Preprocessing and Feature Engineering}
-\label{sec:injection}
 
 Amounts reported by fewer than 1\% of taxpayers were removed (ten variables, e.g.\ primary-production business items), because a variable that is almost always zero would be flagged merely for being non-zero. Of the remainder, one member of each pair with $|r| > 0.95$ on the transformed scale was dropped to avoid double counting: the franking credit ($r = 0.998$ with franked dividends), other rental deductions (0.992 with gross rent) and business expenses (0.951 with business income); their information is retained through ratios. Forty-four amounts remain.
 
@@ -98,23 +97,13 @@ The 44 transformed amounts are combined with twelve behavioural features (Table~
     \end{tabular}
 \end{table}
 
-As there is no compliance records exists in the dataset, 1\% of records of 3,219 tax return details were extracted from dataset to create labelled anomalies, following the benchmark-construction logic of Emmott et al.~\cite{emmott2013systematic}. Five mechanisms reflecting recognised risk types that the file can represent were applied:
-
-\begin{itemize}
-    \item \textbf{A1 Work-related expense inflation} (salary above \$20,000). Work-related expenses raised to 25--45\% of salary amount (peer 99th percentile 24\%).
-    \item \textbf{A2 Business expense inflation} (business income above \$5,000, expenses below income). Expenses raised to 150--300\% of business income (peer 99th percentile 220\%).
-    \item \textbf{A3 Rental deduction inflation} (gross rent above \$5,000). Rental deductions raised to 300--500\% of gross rent (peer 99th percentile 295\%).
-    \item \textbf{A4 Taxable-income identity violation} (income above \$30,000). Taxable income set to 40--70\% of the identity-implied amount, nothing else changed.
-    \item \textbf{A5 Investment deductions without investment income} (no interest or dividends reported). Interest deductions have been reported for 15--35\% of income even though there was no related income.
-\end{itemize}
-
 \subsection{Segmentation}
 
 The k-means algorithm depends on the value of $k$ and clustering with different $k$ values will eventually produce different results. Candidates for $k$ number were compared using several methods. First we used inertia elbow method, where it measure how internally coherent the clusters are. Second, silhouette method where it shows the separation distance between the resulting clusters~\cite{rousseeuw1987silhouettes}. Third, we used Davies--Bouldin Index as it is calculated as the average similarity of each cluster with a cluster most similar to it~\cite{davies1979cluster}. Cali\'nski--Harabasz Index is a measure of how similar an object is to its own cluster (cohesion) compared to other clusters (separation)~\cite{calinski1974dendrite}. It has computed on a fixed 20,000 record sample because silhouette is quadratic. One segment have to have at minimum 2,000 records to support its own forest. Among these methods, $k$ number with highest silhouette and lowest Davies--Bouldin Index was selected. Segments were named after their correlated median income.
 
 \subsection{Anomaly Detection}
 
-One Isolation Forest (200 trees, subsample 256~\cite{liu2008isolation}) was fitted to each segment with 56 features and used to score anomaly of its own clusters. Scores are reported as the negative of scikit-learn's \texttt{score\_samples} so that higher means it is more isolated from the segment. Since contamination percentage only cut-off the top anomaly at 1\%, 2\%, 5\% and 10\% which taken from segment score quantiles, 2\% has been chosen for this research as it is practical rather than an estimate of the unknown true anomaly rate. A population wide forest with identical settings was fitted for comparison. The designs were checked using on overlap score like Jaccard and Spearman, recall and precision of injected anomalies at each budget. A pre-specified test was repeated on both designs on the twelve behavioural ratios alone, to tell the effect of the reference group from the effect of the feature.
+One Isolation Forest (200 trees, subsample 256~\cite{liu2008isolation}) was fitted to each segment with 56 features and used to score anomaly of its own clusters. Scores are reported as the negative of scikit-learn's \texttt{score\_samples} so that higher means it is more isolated from the segment. Since contamination percentage only cut-off the top anomaly at 1\%, 2\%, 5\% and 10\% which taken from segment score quantiles, 2\% has been chosen for this research as it is practical rather than an estimate of the unknown true anomaly rate. A population wide forest with identical settings was fitted for comparison. The designs were checked using on overlap score like Jaccard and Spearman at each budget. A pre-specified test was repeated on both designs on the twelve behavioural ratios alone, to tell the effect of the reference group from the effect of the feature.
 
 \subsection{Supervised Learning}
 

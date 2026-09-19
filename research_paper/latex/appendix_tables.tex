@@ -71,47 +71,6 @@ Table~\ref{tab:app_screening} lists every dollar-amount variable in the ATO samp
     \end{tabular}}
 \end{table}
 
-\subsection*{Appendix C - Injected Anomaly Design and Audit}
-
-Table~\ref{tab:app_injection} records the eligible pool and the number of records modified for each of the five injected mechanisms of Section 3.3, and Table~\ref{tab:app_injection_audit} shows the median deduction-to-income ratio and median taxable income of the modified records before and after injection, confirming that each mechanism changed the intended quantity.
-
-\begin{table}[H]
-    \centering
-    \caption{Injected anomaly mechanisms: eligible pool and number of records injected.}
-    \label{tab:app_injection}
-    \footnotesize
-    \begin{tabular}{l p{0.44\linewidth} rr}
-        \toprule
-        Type & Description & Eligible pool & Injected \\
-        \midrule
-        A1\_wre\_inflation & Work-related expenses inflated to 25-45\% of salary & 218,028 & 644 \\
-        A2\_business\_expense & Business expenses inflated to 150-300\% of business income & 23,526 & 644 \\
-        A3\_rental\_deduction & Rental deductions inflated to 300-500\% of gross rent & 34,191 & 644 \\
-        A4\_taxable\_identity & Taxable income reported at 40-70\% of income less deductions and losses & 235,253 & 644 \\
-        A5\_invest\_ded\_no\_income & Investment deductions of 15-35\% of income with zero investment income & 69,700 & 643 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Injection audit: median deduction-to-income ratio and median taxable income (AUD) of injected records before and after modification.}
-    \label{tab:app_injection_audit}
-    \footnotesize
-    \resizebox{\textwidth}{!}{%
-    \begin{tabular}{lrrrr}
-        \toprule
-        Type & Ded./income before & Ded./income after & Taxable income before & Taxable income after \\
-        \midrule
-        A1\_wre\_inflation & 0.022 & 0.335 & 74,279.5 & 49,909.5 \\
-        A2\_business\_expense & 0.005 & 0.026 & 47,180.5 & 0.0 \\
-        A3\_rental\_deduction & 0.018 & 0.110 & 70,280.5 & 6,219.5 \\
-        A4\_taxable\_identity & 0.020 & 0.020 & 72,182.5 & 38,723.0 \\
-        A5\_invest\_ded\_no\_income & 0.021 & 0.308 & 64,319.0 & 45,284.0 \\
-        \bottomrule
-    \end{tabular}}
-\end{table}
-
 \subsection*{Appendix D - Supplementary Results}
 
 This appendix contains supporting results referred to in Chapter 4 but not reported there in full: the clustering algorithms compared with K-Means (Table~\ref{tab:app_clustering}), the occupation mix of each segment (Table~\ref{tab:app_occupation}), the five-fold cross-validation of the supervised models (Table~\ref{tab:app_cv}), the SHAP validity check for each segment forest (Table~\ref{tab:app_shap_validity}), the global SHAP importance of the supervised Random Forest shown in Fig.~\ref{fig:shap_rf} (Table~\ref{tab:app_shap_rf}), and the fifteen highest-scoring records of the segmented Isolation Forest with their top SHAP drivers (Table~\ref{tab:app_review}).
@@ -164,8 +123,8 @@ This appendix contains supporting results referred to in Chapter 4 but not repor
         \toprule
         Model & F1 & ROC-AUC & PR-AUC & Training time (s) \\
         \midrule
-        Random Forest & 0.920 $\pm$ 0.009 & 0.9997 $\pm$ 0.0000 & 0.970 $\pm$ 0.005 & 534.7 \\
-        Hist. Gradient Boosting & 0.856 $\pm$ 0.028 & 0.9980 $\pm$ 0.0010 & 0.974 $\pm$ 0.004 & 38.5 \\
+        Random Forest & 0.700 $\pm$ 0.010 & 0.9933 $\pm$ 0.0003 & 0.800 $\pm$ 0.006 & 709.9 \\
+        Hist. Gradient Boosting & 0.647 $\pm$ 0.003 & 0.9965 $\pm$ 0.0002 & 0.883 $\pm$ 0.003 & 50.8 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -200,21 +159,21 @@ This appendix contains supporting results referred to in Chapter 4 but not repor
         \toprule
         Rank & Feature & Mean $|$SHAP$|$ \\
         \midrule
-        1 & taxable\_income\_ratio & 0.0947 \\
-        2 & deduction\_to\_income\_ratio & 0.0477 \\
-        3 & rental\_deduction\_ratio & 0.0350 \\
-        4 & business\_expense\_ratio & 0.0282 \\
-        5 & log\_Net\_rent\_amt & 0.0260 \\
-        6 & log\_Tot\_IncLoss\_amt & 0.0249 \\
-        7 & log\_Taxable\_Income & 0.0242 \\
-        8 & log\_Tot\_ded\_amt & 0.0231 \\
-        9 & log\_Total\_NPP\_BI\_amt & 0.0206 \\
-        10 & log\_Net\_NPP\_BI\_amt & 0.0199 \\
-        11 & log\_Gross\_rent\_amt & 0.0173 \\
-        12 & log\_WRE\_other\_amt & 0.0172 \\
-        13 & log\_Intrst\_Ded\_amt & 0.0163 \\
-        14 & investment\_deduction\_ratio & 0.0159 \\
-        15 & wre\_to\_salary\_ratio & 0.0153 \\
+        1 & items\_reported & 0.1197 \\
+        2 & log\_Tot\_ded\_amt & 0.0393 \\
+        3 & rental\_deduction\_ratio & 0.0348 \\
+        4 & log\_Gross\_rent\_amt & 0.0330 \\
+        5 & log\_Tot\_CY\_CG\_amt & 0.0317 \\
+        6 & deduction\_to\_income\_ratio & 0.0226 \\
+        7 & log\_Spr\_Ttl\_Acnt\_Bal & 0.0222 \\
+        8 & log\_Rent\_int\_ded\_amt & 0.0189 \\
+        9 & log\_Tot\_IncLoss\_amt & 0.0176 \\
+        10 & log\_Asbl\_forgn\_source\_incm\_amt & 0.0170 \\
+        11 & log\_Other\_foreign\_inc\_amt & 0.0146 \\
+        12 & log\_Net\_CG\_amt & 0.0132 \\
+        13 & log\_Taxable\_Income & 0.0123 \\
+        14 & log\_Frk\_Div\_amt & 0.0121 \\
+        15 & log\_Spr\_Prsnl\_Contr & 0.0099 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -227,23 +186,23 @@ This appendix contains supporting results referred to in Chapter 4 but not repor
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{llrrrr p{0.42\linewidth}}
         \toprule
-        Record & Seg. & Injected & Score & Total income & Deductions & Top SHAP drivers \\
+        Record & Seg. & Seeds flagging & Score & Total income & Deductions & Top SHAP drivers \\
         \midrule
-        87459 & S0 & -- & 0.7364 & 245,409 & 45,445 & log\_Div\_Ded\_amt=3,550.00; log\_Spr\_Othr\_Contr=43,530.00; log\_Tot\_CY\_CG\_amt=12,529.00 \\
-        56577 & S6 & -- & 0.6753 & 1,490,569 & 15,289 & log\_Unfranked\_Div\_amt=2,991.00; log\_WRE\_uniform\_amt=487.00; log\_WRE\_car\_amt=3,580.00 \\
-        85576 & S2 & A2\_business\_expense & 0.7483 & $-$427,401 & 117,241 & log\_Div\_Ded\_amt=51,135.00; log\_Other\_foreign\_inc\_amt=12,200.00; gift\_to\_income\_ratio=1.09 \\
-        259367 & S1 & -- & 0.7139 & 142,185 & 59,604 & log\_Intrst\_Ded\_amt=15,271.00; log\_Tot\_CY\_CG\_amt=28,467.00; log\_Gross\_rent\_amt=36,687.00 \\
-        84977 & S3 & -- & 0.6684 & $-$2,210 & 26,806 & deduction\_to\_income\_ratio=5.00; log\_Untaxed\_othr\_pnsn\_amt=58,998.00; personal\_super\_ratio=5.00 \\
-        220906 & S7 & -- & 0.7140 & 19 & 9,302 & deduction\_to\_income\_ratio=5.00; wre\_to\_salary\_ratio=5.00; log\_TFN\_amts\_wheld\_gr\_intst\_amt=6.00 \\
-        2684 & S4 & -- & 0.6663 & 1,327,612 & 512,041 & log\_Intrst\_Ded\_amt=328,522.00; log\_Div\_Ded\_amt=22,516.00; business\_expense\_ratio=10.00 \\
-        103340 & S5 & -- & 0.6505 & $-$70,235 & 3,255 & log\_Other\_foreign\_inc\_amt=6,431.00; gift\_to\_income\_ratio=1.23; log\_Net\_CG\_amt=84,172.00 \\
-        266175 & S0 & A3\_rental\_deduction & 0.7168 & $-$410,927 & 132,117 & personal\_super\_ratio=3.28; log\_Div\_Ded\_amt=127,766.00; log\_Tot\_CY\_CG\_amt=37,774.00 \\
-        284942 & S0 & -- & 0.7158 & 559,550 & 61,874 & log\_Tot\_CY\_CG\_amt=20,252.00; log\_Div\_Ded\_amt=51,135.00; log\_Net\_CG\_amt=15,840.00 \\
-        84356 & S0 & -- & 0.7077 & 1,186,484 & 149,708 & log\_Tot\_CY\_CG\_amt=73,500.00; log\_Unfranked\_Div\_amt=18,787.00; log\_Asbl\_forgn\_source\_incm\_amt=6,008.00 \\
-        190823 & S0 & -- & 0.7070 & 144,621 & 94,550 & log\_Tot\_CY\_CG\_amt=56,774.00; log\_Div\_Ded\_amt=29,306.00; log\_Unfranked\_Div\_amt=10,498.00 \\
-        25520 & S0 & -- & 0.7063 & 199,428 & 25,500 & log\_Tot\_CY\_CG\_amt=28,890.00; log\_Asbl\_forgn\_source\_incm\_amt=226,914.00; log\_Spr\_Othr\_Contr=6,140.00 \\
-        2694 & S0 & -- & 0.7032 & 608,399 & 50,805 & log\_Div\_Ded\_amt=32,715.00; log\_Tot\_CY\_CG\_amt=15,116.00; log\_Spr\_Prsnl\_Contr=14,564.00 \\
-        302688 & S0 & A3\_rental\_deduction & 0.7003 & $-$87,400 & 9,507 & deduction\_to\_income\_ratio=5.00; personal\_super\_ratio=2.18; tax\_affairs\_cost\_ratio=0.32 \\
+        87459 & S0 & 5/5 & 0.7314 & 245,409 & 45,445 & gift\_to\_income\_ratio=0.05; log\_Spr\_Othr\_Contr=43,530.00; log\_Gross\_rent\_amt=51,362.00 \\
+        84977 & S3 & 5/5 & 0.6750 & -2,210 & 26,806 & tax\_affairs\_cost\_ratio=1.00; deduction\_to\_income\_ratio=5.00; log\_Rent\_int\_ded\_amt=139,796.00 \\
+        241415 & S2 & 5/5 & 0.7116 & 768,526 & 27,184 & log\_Spr\_Othr\_Contr=45,239.00; log\_Frk\_Div\_amt=59,080.00; log\_Rep\_frng\_ben\_amt=17,965.00 \\
+        259367 & S1 & 5/5 & 0.7054 & 142,185 & 59,604 & investment\_deduction\_ratio=0.74; log\_Gross\_rent\_amt=36,687.00; log\_Net\_CG\_amt=14,234.00 \\
+        220906 & S7 & 5/5 & 0.7113 & 19 & 9,302 & deduction\_to\_income\_ratio=5.00; log\_TFN\_amts\_wheld\_gr\_intst\_amt=6.00; log\_Tot\_ded\_amt=9,302.00 \\
+        2684 & S4 & 5/5 & 0.6581 & 1,327,612 & 512,041 & investment\_deduction\_ratio=2.25; business\_expense\_ratio=10.00; log\_Gross\_rent\_amt=137,063.00 \\
+        203110 & S6 & 5/5 & 0.6792 & -57,099 & 56,022 & personal\_super\_ratio=5.00; tax\_affairs\_cost\_ratio=1.00; log\_WRE\_trvl\_amt=11,623.00 \\
+        103340 & S5 & 5/5 & 0.6781 & -70,235 & 3,255 & tax\_affairs\_cost\_ratio=1.00; log\_Tot\_CY\_CG\_amt=199,865.00; gift\_to\_income\_ratio=1.23 \\
+        190823 & S0 & 5/5 & 0.7231 & 144,621 & 94,550 & log\_Net\_CG\_amt=16,996.00; investment\_deduction\_ratio=0.73; log\_Tot\_CY\_CG\_amt=56,774.00 \\
+        284942 & S0 & 5/5 & 0.7187 & 559,550 & 61,874 & investment\_deduction\_ratio=1.51; payg\_instalment\_ratio=0.13; log\_Gross\_rent\_amt=27,265.00 \\
+        273740 & S0 & 5/5 & 0.7132 & 329,486 & 16,969 & log\_Other\_foreign\_inc\_amt=20,985.00; payg\_instalment\_ratio=0.15; log\_Gross\_rent\_amt=37,474.00 \\
+        7718 & S0 & 5/5 & 0.7095 & 30,675 & 3,207 & tax\_affairs\_cost\_ratio=0.09; personal\_super\_ratio=3.31; log\_Gross\_rent\_amt=63,542.00 \\
+        84356 & S0 & 5/5 & 0.7094 & 1,186,484 & 149,708 & gift\_to\_income\_ratio=0.11; log\_Gross\_rent\_amt=124,392.00; log\_Net\_CG\_amt=36,751.00 \\
+        97070 & S0 & 5/5 & 0.7058 & 1,025,966 & 62,844 & investment\_deduction\_ratio=1.17; log\_Spr\_Othr\_Contr=33,771.00; log\_Cr\_PAYG\_ITI\_amt=22,449.00 \\
+        203753 & S0 & 5/5 & 0.7040 & 235,802 & 24,736 & payg\_instalment\_ratio=0.18; investment\_deduction\_ratio=0.57; log\_Net\_CG\_amt=11,218.00 \\
         \bottomrule
     \end{tabular}}
 \end{table}

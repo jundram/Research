@@ -1,0 +1,5 @@
+contamination,n_flagged_segmented,n_flagged_population_wide,flagged_by_both,jaccard,pct_segmented_list_changed
+0.01,3224,3219,1805,0.3892,44.0136
+0.02,6442,6438,3752,0.411,41.7572
+0.05,16098,16095,10257,0.4676,36.284
+0.1,32192,32189,22018,0.5197,31.6041

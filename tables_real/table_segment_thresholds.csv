@@ -1,0 +1,9 @@
+segment,name,n,threshold_1pct,n_flagged_1pct,threshold_2pct,n_flagged_2pct,threshold_5pct,n_flagged_5pct,threshold_10pct,n_flagged_10pct
+0,S0: Wage-dominant (mid income),233317,0.5683,2334,0.54,4667,0.4975,11666,0.4618,23332
+1,S1: Pension/retirement (low income),17834,0.5733,179,0.5377,357,0.4883,892,0.4493,1784
+2,S2: Business-dominant (mid income),18650,0.5808,187,0.5494,373,0.5044,933,0.4646,1865
+3,S3: Investment-income (low income),18758,0.5652,188,0.546,376,0.5115,938,0.4783,1876
+4,S4: Other-income (mid income),5402,0.554,55,0.5295,109,0.496,271,0.4665,541
+5,S5: Rental-property (low income),9266,0.5466,93,0.524,186,0.4885,464,0.4607,927
+6,S6: Trust/partnership (mid income),14440,0.5472,145,0.5261,289,0.4924,722,0.4621,1444
+7,S7: No/minimal reported income,4223,0.5895,43,0.5497,85,0.4924,212,0.445,423

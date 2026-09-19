@@ -1,0 +1,3 @@
+design,n_flagged,median_income_flagged,income_multiple_of_population_median,pct_flagged_in_top_income_decile,pct_flagged_below_median_income,spearman_score_vs_income
+segmented,6442,144805.0,2.486,48.789,14.468,0.287
+population-wide,6438,146812.0,2.521,49.55,18.5,0.191
